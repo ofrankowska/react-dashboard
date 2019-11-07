@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
     userNameField: {
         width: 420,
-        bottom: "21px",
+        bottom: "19px",
         "& input": {
             textAlign: "left",
             fontSize: "48px",

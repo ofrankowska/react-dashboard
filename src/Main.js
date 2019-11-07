@@ -22,8 +22,8 @@ const styles = {
     },
     weather: {
         position: "fixed",
-        top: "20px",
-        right: "80px"
+        top: "40px",
+        right: "60px"
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
@@ -72,7 +72,7 @@ class Main extends Component {
                 [classes.evening]: isEvening,
             })}>
                 <div className={classes.weather}>
-                    <Weather />
+                    <Weather isEvening={isEvening}/>
                 </div>
                 <Clock hour={hour} min={min} sec={sec} />
                 <Message isMorning={isMorning} isAfternoon={isAfternoon}/>
