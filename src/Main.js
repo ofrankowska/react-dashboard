@@ -15,7 +15,15 @@ const styles = {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center"
+        justifyContent: "center",
+        textShadow: "0 0 10px rgba(0, 0, 0, 0.568)",
+        color: "white",
+
+    },
+    weather: {
+        position: "fixed",
+        top: "20px",
+        right: "80px"
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
@@ -56,11 +64,11 @@ class Main extends Component {
                 [classes.afternoon]: hour >= 12 || hour < 18,
                 [classes.evening]: hour >= 18 || hour < 6,
             })}>
-                <i className="wi wi-day-sunny display-1"></i>
-
+                <div className={classes.weather}>
+                    <Weather />
+                </div>
                 <Clock hour={hour} min={min} sec={sec} />
                 <Message />
-                <Weather/>
 
             </div>
         )

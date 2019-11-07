@@ -3,10 +3,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
     time: {
-        color: "white",
         fontSize: "8rem",
         fontWeight: 400,
-        textShadow: "0 0 10px rgba(0, 0, 0, 0.568)"
     }   
 }
 
