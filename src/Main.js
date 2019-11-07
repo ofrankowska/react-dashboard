@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
+import Weather from './Weather';
+import Message from './Message';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
@@ -15,10 +17,10 @@ const styles = {
         flexDirection: "column",
         justifyContent: "center"
     },
-    morning : {
+    morning: {
         backgroundImage: `url(${morningImg})`,
 
-    }, 
+    },
     afternoon: {
         backgroundImage: `url(${afternoonImg})`,
     },
@@ -38,21 +40,28 @@ class Main extends Component {
     componentDidMount() {
         setInterval(() => {
             this.setState({
-            hour: new Date().getHours(),
-            min: new Date().getMinutes(),
-            sec: new Date().getSeconds(),
-        })}, 1000)
+                hour: new Date().getHours(),
+                min: new Date().getMinutes(),
+                sec: new Date().getSeconds(),
+            })
+        }, 1000)
     }
     render() {
         const { hour, min, sec } = this.state;
-        const {classes}=this.props;
+        const { classes } = this.props;
         return (
+
             <div className={classNames(classes.root, {
                 [classes.morning]: hour >= 6 || hour < 12,
                 [classes.afternoon]: hour >= 12 || hour < 18,
-                [classes.evening]: hour >= 18 || hour < 6,                
+                [classes.evening]: hour >= 18 || hour < 6,
             })}>
+                <i className="wi wi-day-sunny display-1"></i>
+
                 <Clock hour={hour} min={min} sec={sec} />
+                <Message />
+                <Weather/>
+
             </div>
         )
     }
