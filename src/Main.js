@@ -40,35 +40,42 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hour: new Date().getHours(),
-            min: new Date().getMinutes(),
-            sec: new Date().getSeconds(),
+            hour: this.setHour(),
+            min: this.setMinute(),
+            sec: this.setSecond(),
+            isMorning: this.setHour() >= 6 && this.setHour() < 12,
+            isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
+            isEvening: this.setHour() >= 18 || this.setHour() < 6,
         }
+        console.log(this.state.hour >= 18 || this.state.hour < 6)
     }
     componentDidMount() {
         setInterval(() => {
             this.setState({
-                hour: new Date().getHours(),
-                min: new Date().getMinutes(),
-                sec: new Date().getSeconds(),
+                hour: this.setHour(),
+                min: this.setMinute(),
+                sec: this.setSecond(),
             })
         }, 1000)
     }
+    setHour = () => new Date().getHours();
+    setMinute = () => new Date().getMinutes();
+    setSecond = () => new Date().getSeconds();
     render() {
-        const { hour, min, sec } = this.state;
+        const { hour, min, sec, isMorning, isAfternoon, isEvening } = this.state;
         const { classes } = this.props;
         return (
 
             <div className={classNames(classes.root, {
-                [classes.morning]: hour >= 6 || hour < 12,
-                [classes.afternoon]: hour >= 12 || hour < 18,
-                [classes.evening]: hour >= 18 || hour < 6,
+                [classes.morning]: isMorning,
+                [classes.afternoon]: isAfternoon,
+                [classes.evening]: isEvening,
             })}>
                 <div className={classes.weather}>
                     <Weather />
                 </div>
                 <Clock hour={hour} min={min} sec={sec} />
-                <Message />
+                <Message isMorning={isMorning} isAfternoon={isAfternoon}/>
 
             </div>
         )
