@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import WeatherForecast from './WeatherForecast';
 import WeatherMetaForm from './WeatherMetaForm';
-import { withStyles } from "@material-ui/core/styles";
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import classNames from "classnames";
+
 
 class WeatherWidget extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            city: "",
-            country: "",
+            city: "Swinoujscie",
+            country: "pl",
             formShowing: false,
 
         }

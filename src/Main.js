@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Clock from './Clock';
 import Message from './Message';
 import WeatherWidget from './WeatherWidget';
+import QuoteWidget from './QuoteWidget';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
@@ -28,6 +29,14 @@ const styles = {
         "& h5": {
             margin: 0
         }
+    },
+    quote: {
+        bottom: "20px", 
+        position: "fixed",
+        left: "calc(-50vw + 50%)",
+right: "calc(-50vw + 50%)",
+marginLeft: "auto",
+marginRight: "auto",
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
@@ -73,7 +82,7 @@ class Main extends Component {
     setMinute = () => new Date().getMinutes();
     setSecond = () => new Date().getSeconds();
     render() {
-        const { hour, min, sec, isMorning, isAfternoon, isEvening} = this.state;
+        const { hour, min, sec, isMorning, isAfternoon, isEvening } = this.state;
         const { classes } = this.props;
         return (
 
@@ -84,11 +93,13 @@ class Main extends Component {
             })}>
 
                 <div className={classes.weather}>
-                    <WeatherWidget isEvening={isEvening}/>
+                    <WeatherWidget isEvening={isEvening} />
                 </div>
                 <Clock hour={hour} min={min} sec={sec} />
                 <Message isMorning={isMorning} isAfternoon={isAfternoon} />
-
+                <div className={classes.quote}>
+                    <QuoteWidget />
+                </div>
             </div>
         )
     }

@@ -4,8 +4,44 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { withStyles } from "@material-ui/core/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
+const styles = {
+    input: {
+        // "& input, label": {
+        //     color: "white",
+
+        // },
+        "& label:active, label.Mui-focused": {
+            color: "#5CA19E",
+        },
+        '& label.Mui-focused': {
+            color: '#5CA19E',
+        },
+        '& .MuiInput-underline:after:before': {
+            borderBottomColor: '#5CA19E',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#5CA19E',
+        },
+        '& .MuiOutlinedInput-root': {
+            '&.Mui-focused fieldset': {
+                borderColor: '#5CA19E',
+            },
+        },
+    },
+    submitBtn: {
+        backgroundColor: "rgb(45, 47, 56)",
+        color: "white"
+    },
+    cancelBtn: {
+        backgroundColor: "#5CA19E",
+        color: "white"
+
+
+    }
+};
 
 class WeatherMetaForm extends Component {
     constructor(props) {
@@ -27,7 +63,7 @@ class WeatherMetaForm extends Component {
     }
     render() {
         const { city, countryCode } = this.state;
-        const { hideForm } = this.props;
+        const { hideForm, classes } = this.props;
         return (
             <Dialog open={true}>
                 <DialogTitle>Choose weather location</DialogTitle>
@@ -41,6 +77,7 @@ class WeatherMetaForm extends Component {
                             fullWidth
                             validators={["required"]}
                             errorMessages={["Enter City"]}
+                            className={classes.input}
                         />
                         <TextValidator
                             label='Two-letter Country Code'
@@ -50,14 +87,24 @@ class WeatherMetaForm extends Component {
                             fullWidth
                             validators={["required"]}
                             errorMessages={["Enter Country Code"]}
+                            className={classes.input}
                         />
 
                     </DialogContent>
 
                     <DialogActions>
-                        <Button type='submit'>Submit</Button>
-                        <Button onClick={hideForm} color="primary">
-                                Cancel
+                        <Button
+                            type='submit'
+                            variant="contained"
+                            className={classes.submitBtn}>
+                            Add Location
+                            </Button>
+                        <Button
+                            onClick={hideForm}
+                            variant="contained"
+                            className={classes.cancelBtn}
+                        >
+                            Cancel
                     </Button>
 
                     </DialogActions>
@@ -67,4 +114,4 @@ class WeatherMetaForm extends Component {
     }
 }
 
-export default WeatherMetaForm;
+export default withStyles(styles)(WeatherMetaForm);
