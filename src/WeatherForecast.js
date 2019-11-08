@@ -26,7 +26,7 @@ const styles = {
     }
 }
 
-class Weather extends Component {
+class WeatherForecast extends Component {
     constructor() {
         super();
         this.state = {
@@ -51,7 +51,7 @@ class Weather extends Component {
     }
     render() {
         const { temperature, description } = this.state;
-        const { classes, isEvening, city, country } = this.props;
+        const { classes, isEvening, city, country, showForm } = this.props;
         const weather_icons = {
             Clear: [faSun, faMoon],
             // : [faCloudSun, faCloudMoon],
@@ -71,10 +71,10 @@ class Weather extends Component {
                     <IconButton
                         color='inherit'
                         aria-label='Change city weather'
-                        onClick={() => console.log('test')}
+                        onClick={showForm}
                         className={classNames(classes.changeBtn)}
                     >
-                        <CreateIcon/>
+                        <CreateIcon />
                     </IconButton>
 
                 </h5>
@@ -90,4 +90,4 @@ class Weather extends Component {
     }
 }
 
-export default withStyles(styles)(Weather);
+export default withStyles(styles)(WeatherForecast);

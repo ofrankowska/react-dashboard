@@ -11,6 +11,7 @@
     "classnames": "^2.2.6",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-material-ui-form-validator": "^2.0.9",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "weather-icons": "git+https://github.com/erikflowers/weather-icons.git"

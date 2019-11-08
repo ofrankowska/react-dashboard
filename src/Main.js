@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
-import Weather from './Weather';
 import Message from './Message';
+import WeatherWidget from './WeatherWidget';
 import { withStyles } from "@material-ui/core/styles";
-import { IconButton } from '@material-ui/core';
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import classNames from "classnames";
 
 
@@ -52,9 +50,6 @@ class Main extends Component {
             isMorning: this.setHour() >= 6 && this.setHour() < 12,
             isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
             isEvening: this.setHour() >= 18 || this.setHour() < 6,
-            city: "Szczecin",
-            country: "pl"
-
         }
     }
     componentDidMount() {
@@ -78,7 +73,7 @@ class Main extends Component {
     setMinute = () => new Date().getMinutes();
     setSecond = () => new Date().getSeconds();
     render() {
-        const { hour, min, sec, isMorning, isAfternoon, isEvening, country, city } = this.state;
+        const { hour, min, sec, isMorning, isAfternoon, isEvening} = this.state;
         const { classes } = this.props;
         return (
 
@@ -89,17 +84,7 @@ class Main extends Component {
             })}>
 
                 <div className={classes.weather}>
-                <h5>WEATHER</h5>
-                    <IconButton
-                        color='inherit'
-                        aria-label='Add city weather'
-                        onClick={()=>console.log('test')}
-                        className={classNames()}
-                    >
-                        <AddCircleOutlineIcon fontSize='large'/>
-                    </IconButton>
-
-                    <Weather isEvening={isEvening} country={country} city={city} />
+                    <WeatherWidget isEvening={isEvening}/>
                 </div>
                 <Clock hour={hour} min={min} sec={sec} />
                 <Message isMorning={isMorning} isAfternoon={isAfternoon} />
