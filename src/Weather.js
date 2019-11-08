@@ -3,17 +3,11 @@ import { WEATHER_API_KEY, WEATHER_API_BASE } from './constants';
 
 import { withStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSun } from '@fortawesome/free-solid-svg-icons';
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
-import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
-import { faCloudMoon } from '@fortawesome/free-solid-svg-icons';
-import { faCloud } from '@fortawesome/free-solid-svg-icons';
-import { faCloudShowersHeavy } from '@fortawesome/free-solid-svg-icons';
-import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
-import { faCloudMoonRain } from '@fortawesome/free-solid-svg-icons';
-import { faBolt } from '@fortawesome/free-solid-svg-icons';
-import { faSnowflake } from '@fortawesome/free-solid-svg-icons';
-import { faSmog } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faCloudSun, faCloudMoon, faCloud, faCloudShowersHeavy, faCloudSunRain, faCloudMoonRain, faBolt, faSnowflake, faSmog } from '@fortawesome/free-solid-svg-icons';
+import CreateIcon from "@material-ui/icons/Create";
+import { IconButton } from '@material-ui/core';
+import classNames from "classnames";
+
 
 const styles = {
     icon: {
@@ -22,6 +16,13 @@ const styles = {
     },
     text: {
         margin: 0
+    },
+    changeBtn: {
+        padding: 0,
+        paddingLeft: "2px",
+        "& svg": {
+            fontSize: "16px"
+        }
     }
 }
 
@@ -29,44 +30,54 @@ class Weather extends Component {
     constructor() {
         super();
         this.state = {
-            city: "",
-            country: "",
             temperature: "",
             description: "",
         }
-        this.getData('Poznan', 'pl')
     }
-    async getData(city, country) {
+    async componentDidMount() {
+        const { city, country } = this.props;
         const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
         const data = await res.json();
         this.setState({
             city,
             country,
             temperature: this.toCelcius(data.main.temp),
-            description: data.weather[0].description
+            description: data.weather[0].main
         })
+        console.log(data)
     }
     toCelcius(celvin) {
         return Math.round((celvin - 273.15) * 10) / 10;
     }
     render() {
-        const { city, country, temperature, description } = this.state;
-        const { classes, isEvening } = this.props;
+        const { temperature, description } = this.state;
+        const { classes, isEvening, city, country } = this.props;
         const weather_icons = {
-            "clear sky": [faSun, faMoon],
-            "few clouds": [faCloudSun, faCloudMoon],
-            "scattered clouds": [faCloud, faCloud],
-            "broken clouds": [faCloud, faCloud],
-            "shower rain": faCloudShowersHeavy,
-            rain: [faCloudSunRain, faCloudMoonRain],
-            thunderstorm: [faBolt, faBolt],
-            snow: [faSnowflake, faSnowflake],
-            mist: [faSmog, faSmog]
+            Clear: [faSun, faMoon],
+            // : [faCloudSun, faCloudMoon],
+            Clouds: [faCloud, faCloud],
+            // "broken clouds": [faCloud, faCloud],
+            // : faCloudShowersHeavy,
+            Rain: [faCloudSunRain, faCloudMoonRain],
+            Thunderstorm: [faBolt, faBolt],
+            Snow: [faSnowflake, faSnowflake],
+            Atmosphere: [faSmog, faSmog]
 
         }
         return (
             <div>
-                <h5 className={classes.text}>{city.toUpperCase()} ({country.toUpperCase()})</h5>
+                <h5 className={classes.text}>
+                    {city.toUpperCase()} ({country.toUpperCase()})
+                    <IconButton
+                        color='inherit'
+                        aria-label='Change city weather'
+                        onClick={() => console.log('test')}
+                        className={classNames(classes.changeBtn)}
+                    >
+                        <CreateIcon/>
+                    </IconButton>
+
+                </h5>
                 {description &&
                     <FontAwesomeIcon
                         className={classes.icon}

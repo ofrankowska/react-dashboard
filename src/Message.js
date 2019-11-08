@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
-const useStyles = makeStyles(theme => ({
+const styles = {
     Message: {
         color: "white",
         fontSize: "48px",
@@ -15,9 +15,6 @@ const useStyles = makeStyles(theme => ({
     },
     
     textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        // display: "inline-block",
         "& input, label": {
             color: "white",
 
@@ -49,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
     userNameField: {
         width: 420,
-        bottom: "19px",
+        bottom: "21px",
         "& input": {
             textAlign: "left",
             fontSize: "48px",
@@ -57,8 +54,6 @@ const useStyles = makeStyles(theme => ({
         "& label": {
             fontSize: "48px",
         },
-
-
     },
     focusField: {
         width: 400,
@@ -72,11 +67,26 @@ const useStyles = makeStyles(theme => ({
 
     },
     
-}));
+};
 
-function Message(props) {
-    const classes = useStyles();
-    const {isMorning, isAfternoon} = props;
+class Message extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            userName: "",
+            focusName: ""
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(e){
+        this.setState({[e.target.name]: e.target.value})
+    }
+    handleSubmit(){
+        console.log('test')
+    }
+    render(){
+    const {isMorning, isAfternoon, classes} = this.props;
     const greeting = isMorning ? "Good Morning" : isAfternoon ? "Good Afternoon" : "Good Evening";
     return (
         <section className={classes.Message}>
@@ -88,6 +98,9 @@ function Message(props) {
                     label="what is your name?"
                     margin="normal"
                     style={{ color: "white" }}
+                    value={this.state.userName}
+                    name="userName"
+                    onChange={this.handleChange}
                 />
             </div>
             <div>
@@ -96,10 +109,15 @@ function Message(props) {
                     className={classNames(classes.textField, classes.focusField)}
                     label="What is your focus for today?"
                     margin="normal"
+                    value={this.state.focusName}
+                    name="focusName"
+                    onChange={this.handleChange}
+
                 />
             </div>
         </section>
     )
+    }
 }
 
-export default Message;
+export default withStyles(styles)(Message);
