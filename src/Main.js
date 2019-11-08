@@ -31,12 +31,13 @@ const styles = {
         }
     },
     quote: {
-        bottom: "20px", 
+        bottom: "20px",
         position: "fixed",
         left: "calc(-50vw + 50%)",
-right: "calc(-50vw + 50%)",
-marginLeft: "auto",
-marginRight: "auto",
+        right: "calc(-50vw + 50%)",
+        marginLeft: "auto",
+        marginRight: "auto",
+        maxWidth: "700px"
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
