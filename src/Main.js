@@ -36,11 +36,10 @@ const styles = {
         right: "calc(-50vw + 50%)",
         marginLeft: "auto",
         marginRight: "auto",
-        maxWidth: "700px"
+        maxWidth: "700px",
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
-
     },
     afternoon: {
         backgroundImage: `url(${afternoonImg})`,
