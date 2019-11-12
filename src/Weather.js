@@ -6,6 +6,7 @@ import { faSun, faMoon, faCloud, faCloudSunRain, faCloudMoonRain, faBolt, faSnow
 import CreateIcon from "@material-ui/icons/Create";
 import { IconButton } from '@material-ui/core';
 import classNames from "classnames";
+import { CSSTransition } from 'react-transition-group';
 
 
 const styles = {
@@ -36,7 +37,7 @@ function Weather(props) {
             atmosphere: [faSmog, faSmog],
             clear: [faSun, faMoon],
             clouds: [faCloud, faCloud],
-        }    
+        }
         if (id <= 232) return weather_icons.thunderstorm;
         else if (id <= 321) return weather_icons.drizzle;
         else if (id <= 531) return weather_icons.rain;
@@ -47,25 +48,31 @@ function Weather(props) {
     }
 
     return (
-        <div>
-            <h5 className={classes.text}>
-                {city.toUpperCase()} ({country.toUpperCase()})
-                    <IconButton
-                    color='inherit'
-                    aria-label='Change city weather'
-                    onClick={showForm}
-                    className={classNames(classes.changeBtn)}
-                >
-                    <CreateIcon />
-                </IconButton>
+        <CSSTransition
+            classNames="fade"
+            timeout={500}
+        >
 
-            </h5>
-            <FontAwesomeIcon
-                className={classes.icon}
-                icon={isEvening ? icon(id)[1] : icon(id)[0]}
-            />
-            <h1 className={classes.text}>{temperature}&deg;C</h1>
-        </div>
+            <div>
+                <h5 className={classes.text}>
+                    {city.toUpperCase()} ({country.toUpperCase()})
+                    <IconButton
+                        color='inherit'
+                        aria-label='Change city weather'
+                        onClick={showForm}
+                        className={classNames(classes.changeBtn)}
+                    >
+                        <CreateIcon />
+                    </IconButton>
+
+                </h5>
+                <FontAwesomeIcon
+                    className={classes.icon}
+                    icon={isEvening ? icon(id)[1] : icon(id)[0]}
+                />
+                <h1 className={classes.text}>{temperature}&deg;C</h1>
+            </div>
+        </CSSTransition>
     )
 }
 

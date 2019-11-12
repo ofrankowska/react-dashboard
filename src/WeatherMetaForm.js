@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import { withStyles } from "@material-ui/core/styles";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
+
 const styles = {
     content: {
         paddingBottom: "50px"

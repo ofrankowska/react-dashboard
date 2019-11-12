@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import Weather from './Weather';
 import WeatherMetaForm from './WeatherMetaForm';
 import { WEATHER_API_KEY, WEATHER_API_BASE } from './constants';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
@@ -65,13 +67,15 @@ class WeatherWidget extends PureComponent {
         })
     }
     render() {
-        console.log('rerender weather')
-
         const { country, city, formShowing, temperature, id } = this.state;
         const { isEvening } = this.props;
         const weather = (
-            <Weather isEvening={isEvening} country={country} city={city} showForm={this.showForm} temperature={temperature} id={id} />
-        )
+            <TransitionGroup>
+                <CSSTransition key={city}  classNames="fade" timeout={300}>
+                    <Weather isEvening={isEvening} country={country} city={city} showForm={this.showForm} temperature={temperature} id={id} />
+                </CSSTransition>
+            </TransitionGroup>
+        );
         const addLocationBtn = (
             <div>
                 <h5>WEATHER</h5>
@@ -83,11 +87,10 @@ class WeatherWidget extends PureComponent {
                     <AddCircleOutlineIcon fontSize='large' />
                 </IconButton>
             </div>
-        )
+        );
         return (
             <div>
                 {country && city ? weather : addLocationBtn}
-
                 <WeatherMetaForm updateLocation={this.updateLocation} hideForm={this.hideForm} open={formShowing} locationExists={this.locationExists} />
 
             </div>

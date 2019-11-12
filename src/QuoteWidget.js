@@ -7,15 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const styles = {
-    // "@global": {
-    //     ".fade-exit": {
-    //         opacity: 1,
-    //     },
-    //     ".fade-exit-active": {
-    //         opacity: 0,
-    //         transition: "opacity 0.5s ease-out 1s"
-    //     }
-    // },
     QuoteWidget: {
         transform: "translateY(20px)",
         transition: "transform 0.4s ease-in",
@@ -45,7 +36,8 @@ class QuoteWidget extends PureComponent {
         this.state = {
             quotes: [],
             author: "",
-            text: ""
+            text: "",
+            id: ""
         }
         this.getRandomQuote = this.getRandomQuote.bind(this);
     }
@@ -60,14 +52,22 @@ class QuoteWidget extends PureComponent {
         const quotes = this.state.quotes;
         const randomNum = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomNum];
-        this.setState({ ...randomQuote });
+        this.setState({ ...randomQuote, id: randomNum });
     }
     render() {
-        const { author, text } = this.state;
+        const { author, text, id } = this.state;
         const { classes } = this.props;
+
         return (
             <section className={classes.QuoteWidget}>
-                <Quote author={author} text={text}/>
+                <TransitionGroup>
+                    {text &&
+                    <CSSTransition key={id} timeout={300} classNames="fade">
+                        <Quote author={author} text={text} />
+                    </CSSTransition>
+                    }
+                </TransitionGroup>
+
                 <IconButton
                     color='inherit'
                     aria-label='Add city weather'

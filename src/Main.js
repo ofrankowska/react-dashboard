@@ -6,7 +6,6 @@ import QuoteWidget from './QuoteWidget';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
-
 import morningImg from './img/morning.jpg';
 import afternoonImg from './img/afternoon.jpg';
 import eveningImg from './img/evening.jpg';
@@ -84,7 +83,6 @@ class Main extends Component {
                 [classes.afternoon]: isAfternoon,
                 [classes.evening]: isEvening,
             })}>
-
                 <div className={classes.weather}>
                     <WeatherWidget isEvening={isEvening} />
                 </div>
