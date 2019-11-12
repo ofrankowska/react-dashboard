@@ -56,7 +56,6 @@ class Main extends Component {
         this.state = {
             hour: this.setHour(),
             min: this.setMinute(),
-            sec: this.setSecond(),
             isMorning: this.setHour() >= 6 && this.setHour() < 12,
             isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
             isEvening: this.setHour() >= 18 || this.setHour() < 6,
@@ -67,23 +66,16 @@ class Main extends Component {
             this.setState({
                 hour: this.setHour(),
                 min: this.setMinute(),
-                sec: this.setSecond(),
-            })
-        }, 1000);
-        setInterval(() => {
-            this.setState({
                 isMorning: this.setHour() >= 6 && this.setHour() < 12,
                 isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
                 isEvening: this.setHour() >= 18 || this.setHour() < 6,
             })
-        }, 100);
-
+        }, 10000);
     }
     setHour = () => new Date().getHours();
     setMinute = () => new Date().getMinutes();
-    setSecond = () => new Date().getSeconds();
     render() {
-        const { hour, min, sec, isMorning, isAfternoon, isEvening } = this.state;
+        const { hour, min, isMorning, isAfternoon, isEvening } = this.state;
         const { classes } = this.props;
         return (
 
@@ -96,7 +88,7 @@ class Main extends Component {
                 <div className={classes.weather}>
                     <WeatherWidget isEvening={isEvening} />
                 </div>
-                <Clock hour={hour} min={min} sec={sec} />
+                <Clock hour={hour} min={min} />
                 <Message isMorning={isMorning} isAfternoon={isAfternoon} />
                 <div className={classes.quote}>
                     <QuoteWidget />

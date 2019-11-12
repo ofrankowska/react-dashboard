@@ -9,13 +9,13 @@ const styles = {
 }
 
 function Clock(props) {
-    const {hour, min, sec, classes}= props;
+    const {hour, min, classes}= props;
     function addZero(n){
         return (parseInt(n, 10) < 10 ? '0' : '') + n;
     }
     return (
         <time className={classes.time}>
-            {addZero(hour)}<span>:</span>{addZero(min)}<span>:</span>{addZero(sec)}
+            {addZero(hour)}<span>:</span>{addZero(min)}
         </time>
     )
 }
