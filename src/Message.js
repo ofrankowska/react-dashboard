@@ -6,6 +6,8 @@ import classNames from "classnames";
 const styles = {
     Message: {
         fontSize: "48px",
+        paddingTop: "10px",
+
         
     },
     textField: {
