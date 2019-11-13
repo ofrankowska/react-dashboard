@@ -8,7 +8,7 @@ const styles = {
         fontSize: "48px",
         paddingTop: "10px",
 
-        
+
     },
     textField: {
         "& input, label": {
@@ -65,12 +65,22 @@ class Message extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    componentDidMount() {
+        const userName = JSON.parse(window.localStorage.getItem("userName"));
+        if (userName) {
+            this.setState({
+                userName,
+                formIsShowing: false
+            })
+        }
+    }
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
     handleSubmit(e) {
         e.preventDefault();
         this.setState({ formIsShowing: false });
+        window.localStorage.setItem("userName", JSON.stringify(this.state.userName));
     }
     render() {
         const { isMorning, isAfternoon, classes } = this.props;

@@ -29,12 +29,19 @@ class WeatherWidget extends PureComponent {
         this.hideForm = this.hideForm.bind(this);
 
     }
+    componentDidMount(){
+        const location = JSON.parse(window.localStorage.getItem("location"));
+        if(location){
+            this.updateLocation(location.city, location.country);
+        }
+    }
     async locationExists(city, country) {
         const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
         return res.status === 404 ? false : true;
     }
     updateLocation(city, country) {
         this.setState({ city, country, weatherLoading: true }, () => this.getData());
+        window.localStorage.setItem("location", JSON.stringify({city, country}));
     }
     async getData() {
         const { city, country } = this.state;
