@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = {
     Focus: {
@@ -47,6 +50,10 @@ const styles = {
             fontSize: "30px",
         },
     },
+    checkbox: {
+        margin: "10px",
+        backgroundColor: "red"
+    }
 };
 
 class Focus extends Component {
@@ -55,9 +62,17 @@ class Focus extends Component {
         this.state = {
             focusName: "",
             formIsShowing: true,
+            checked: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+    }
+    componentDidMount() {
+        const focusName = JSON.parse(window.localStorage.getItem("focusName"));
+        if (focusName) {
+            this.setState({ focusName, formIsShowing: false });
+        }
     }
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
@@ -65,9 +80,13 @@ class Focus extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.setState({ formIsShowing: false });
+        window.localStorage.setItem("focusName", JSON.stringify(this.state.focusName));
+    }
+    handleCheck(){
+        this.setState(st => ({checked: !st.checked}))
     }
     render() {
-        const { focusName, formIsShowing } = this.state;
+        const { focusName, formIsShowing, checked } = this.state;
         const { classes } = this.props;
         const form = (
             <form onSubmit={this.handleSubmit} style={{ display: "inline-block" }}>
@@ -79,14 +98,26 @@ class Focus extends Component {
                     value={focusName}
                     name="focusName"
                     onChange={this.handleChange}
-
                 />
             </form>
-
         );
+        const focusCheckbox = (
+            <div >
+                <p>TODAY</p>
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={checked} onChange={this.handleCheck}
+                            value={focusName} />
+                    }
+                    label={focusName}
+                />
+                <p>Great work!</p>
+            </div>
+        )
         return (
             <div className={classes.Focus}>
-                {formIsShowing ? form : <p>{focusName}</p>}
+                {formIsShowing ? form : focusCheckbox}
             </div>
 
 

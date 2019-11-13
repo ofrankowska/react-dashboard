@@ -109,6 +109,7 @@ class Message extends Component {
                     value={this.state.userName}
                     name="userName"
                     onChange={this.handleChange}
+                    size="1"
                 />
             </form>
         );
