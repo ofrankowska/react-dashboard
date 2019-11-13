@@ -24,8 +24,14 @@ const styles = {
     },
     weather: {
         position: "fixed",
-        top: "40px",
-        right: "60px",
+        top: "30px",
+        right: "30px",
+        width: "170px",
+        height: "150px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItem: "center",
         "& h5": {
             margin: 0
         },    

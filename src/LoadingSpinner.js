@@ -8,6 +8,7 @@ const styles = {
         border: "10px dotted rgba(255, 255, 255, 0.7)",
         borderRadius: "50%",
         animation: "$spin 2s linear infinite",
+        margin: "auto"
     },
     "@keyframes spin": {
         from: {
