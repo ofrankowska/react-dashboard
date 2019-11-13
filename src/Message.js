@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
+import CreateIcon from "@material-ui/icons/Create";
+import { IconButton } from '@material-ui/core';
 
 const styles = {
     Message: {
         fontSize: "48px",
         paddingTop: "10px",
-
-
+        "&:hover svg": {
+            opacity: 0.7,
+            transition: "opacity 0.3s ease-in"
+        }
     },
     textField: {
         "& input, label": {
@@ -52,6 +56,14 @@ const styles = {
             fontSize: "48px",
         },
     },
+    editBtn: {
+        position: "absolute",
+        padding: "10px",
+        "& svg": {
+            fontSize: "38px",
+            opacity: 0
+        }
+    }
 
 };
 
@@ -86,7 +98,7 @@ class Message extends Component {
         const { isMorning, isAfternoon, classes } = this.props;
         const { userName, formIsShowing } = this.state;
         const greeting = (isMorning ? "Good Morning" : (isAfternoon ? "Good Afternoon" : "Good Evening"));
-        const form = (
+        const formDisplay = (
             <form onSubmit={this.handleSubmit} style={{ display: "inline-block" }}>
                 <TextField
                     id="standard-basic"
@@ -100,10 +112,25 @@ class Message extends Component {
                 />
             </form>
         );
+        const nameDisplay = (
+            <span>
+                {' '}{userName}
+                <IconButton
+                    color='inherit'
+                    aria-label='Edit your name'
+                    onClick={() => this.setState({ formIsShowing: true })}
+                    className={classNames(classes.editBtn)}
+                >
+                    <CreateIcon />
+                </IconButton>
+            </span>
+
+        )
         return (
             <div className={classes.Message}>
                 <span>{greeting},</span>
-                {formIsShowing ? form : <span> {userName}</span>}
+                {formIsShowing ? formDisplay : nameDisplay}
+
             </div>
         )
     }

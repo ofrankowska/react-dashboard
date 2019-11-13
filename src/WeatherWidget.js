@@ -3,13 +3,10 @@ import Weather from './Weather';
 import WeatherMetaForm from './WeatherMetaForm';
 import LoadingSpinner from './LoadingSpinner';
 import { WEATHER_API_KEY, WEATHER_API_BASE } from './constants';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import classNames from "classnames";
-import { thisExpression } from '@babel/types';
 
 
 class WeatherWidget extends PureComponent {
@@ -29,9 +26,9 @@ class WeatherWidget extends PureComponent {
         this.hideForm = this.hideForm.bind(this);
 
     }
-    componentDidMount(){
+    componentDidMount() {
         const location = JSON.parse(window.localStorage.getItem("location"));
-        if(location){
+        if (location) {
             this.updateLocation(location.city, location.country);
         }
     }
@@ -41,7 +38,7 @@ class WeatherWidget extends PureComponent {
     }
     updateLocation(city, country) {
         this.setState({ city, country, weatherLoading: true }, () => this.getData());
-        window.localStorage.setItem("location", JSON.stringify({city, country}));
+        window.localStorage.setItem("location", JSON.stringify({ city, country }));
     }
     async getData() {
         const { city, country } = this.state;
@@ -81,18 +78,14 @@ class WeatherWidget extends PureComponent {
         const { country, city, formShowing, temperature, id, weatherLoading } = this.state;
         const { isEvening } = this.props;
         const weather = (
-            <TransitionGroup>
-                <CSSTransition key={city} classNames="fade" timeout={300}>
-                    <Weather isEvening={isEvening} country={country} city={city} showForm={this.showForm} temperature={temperature} id={id} />
-                </CSSTransition>
-            </TransitionGroup>
+            <Weather isEvening={isEvening} country={country} city={city} showForm={this.showForm} temperature={temperature} id={id} />
         );
         const addLocationBtn = (
             <div>
                 <h5>WEATHER</h5>
                 <IconButton
                     color='inherit'
-                    aria-label='Add city weather'
+                    aria-label='Edit weather location'
                     onClick={this.showForm}
                 >
                     <AddCircleOutlineIcon fontSize='large' />

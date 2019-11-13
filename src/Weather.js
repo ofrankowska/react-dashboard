@@ -17,7 +17,7 @@ const styles = {
     text: {
         margin: 0
     },
-    changeBtn: {
+    editBtn: {
         padding: 0,
         paddingLeft: "2px",
         "& svg": {
@@ -48,11 +48,6 @@ function Weather(props) {
     }
 
     return (
-        <CSSTransition
-            classNames="fade"
-            timeout={500}
-        >
-
             <div>
                 <h5 className={classes.text}>
                     {city.toUpperCase()} ({country.toUpperCase()})
@@ -60,7 +55,7 @@ function Weather(props) {
                         color='inherit'
                         aria-label='Change city weather'
                         onClick={showForm}
-                        className={classNames(classes.changeBtn)}
+                        className={classNames(classes.editBtn)}
                     >
                         <CreateIcon />
                     </IconButton>
@@ -72,7 +67,6 @@ function Weather(props) {
                 />
                 <h1 className={classes.text}>{temperature}&deg;C</h1>
             </div>
-        </CSSTransition>
     )
 }
 
