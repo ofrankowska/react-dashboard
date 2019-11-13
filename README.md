@@ -1,3 +1,8 @@
+<h2>Personal dashboard featuring weather, focus of the day and inspirational quotes.</h2>
+<br>
+Inspired by [Momentum](https://momentumdash.com).
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
