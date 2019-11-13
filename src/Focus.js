@@ -4,9 +4,8 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
 const styles = {
-    Message: {
-        fontSize: "48px",
-        
+    Focus: {
+        fontSize: "30px",
     },
     textField: {
         "& input, label": {
@@ -38,26 +37,23 @@ const styles = {
             },
         },
     },
-
-    userNameField: {
-        width: 430,
-        bottom: "21px",
+    focusField: {
+        width: 400,
         "& input": {
-            textAlign: "left",
-            fontSize: "48px",
+            fontSize: "30px",
+            textAlign: "center"
         },
         "& label": {
-            fontSize: "48px",
+            fontSize: "30px",
         },
     },
-
 };
 
-class Message extends Component {
+class Focus extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: "",
+            focusName: "",
             formIsShowing: true,
         }
         this.handleChange = this.handleChange.bind(this);
@@ -71,30 +67,31 @@ class Message extends Component {
         this.setState({ formIsShowing: false });
     }
     render() {
-        const { isMorning, isAfternoon, classes } = this.props;
-        const { userName, formIsShowing } = this.state;
-        const greeting = (isMorning ? "Good Morning" : (isAfternoon ? "Good Afternoon" : "Good Evening"));
+        const { focusName, formIsShowing } = this.state;
+        const { classes } = this.props;
         const form = (
             <form onSubmit={this.handleSubmit} style={{ display: "inline-block" }}>
                 <TextField
                     id="standard-basic"
-                    className={classNames(classes.textField, classes.userNameField)}
-                    label="what is your name?"
+                    className={classNames(classes.textField, classes.focusField)}
+                    label="What is your focus for today?"
                     margin="normal"
-                    style={{ color: "white" }}
-                    value={this.state.userName}
-                    name="userName"
+                    value={focusName}
+                    name="focusName"
                     onChange={this.handleChange}
+
                 />
             </form>
+
         );
         return (
-            <div className={classes.Message}>
-                <span>{greeting},</span>
-                {formIsShowing ? form : <span> {userName}</span>}
+            <div className={classes.Focus}>
+                {formIsShowing ? form : <p>{focusName}</p>}
             </div>
+
+
         )
     }
 }
 
-export default withStyles(styles)(Message);
+export default withStyles(styles)(Focus);

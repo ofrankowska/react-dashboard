@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Clock from './Clock';
 import Message from './Message';
+import Focus from './Focus';
 import WeatherWidget from './WeatherWidget';
 import QuoteWidget from './QuoteWidget';
 import { withStyles } from "@material-ui/core/styles";
@@ -27,7 +28,14 @@ const styles = {
         right: "60px",
         "& h5": {
             margin: 0
-        }
+        },    
+    },
+    messageFocus: {
+        color: "white",
+        fontWeight: 500,
+        "& .MuiFormControl-root": {
+            margin: 0,
+        },
     },
     quote: {
         bottom: "20px",
@@ -82,14 +90,19 @@ class Main extends Component {
                 [classes.afternoon]: isAfternoon,
                 [classes.evening]: isEvening,
             })}>
-                <div className={classes.weather}>
+                <section className={classes.weather}>
                     <WeatherWidget isEvening={isEvening} />
-                </div>
-                <Clock hour={hour} min={min} />
-                <Message isMorning={isMorning} isAfternoon={isAfternoon} />
-                <div className={classes.quote}>
+                </section>
+                <section>
+                    <Clock hour={hour} min={min} />
+                </section>
+                <section className={classes.messageFocus}>
+                    <Message isMorning={isMorning} isAfternoon={isAfternoon} />
+                    <Focus />
+                </section>
+                <section className={classes.quote}>
                     <QuoteWidget />
-                </div>
+                </section>
             </div>
         )
     }
