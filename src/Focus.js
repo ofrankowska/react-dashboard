@@ -4,7 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import AddIcon from "@material-ui/icons/Add";
+import ClearIcon from "@material-ui/icons/Clear";
+import { IconButton } from '@material-ui/core';
+
 
 const styles = {
     Focus: {
@@ -50,9 +53,33 @@ const styles = {
             fontSize: "30px",
         },
     },
+    checkboxFormTitle: {
+        marginBottom: 0
+    },
+    checkboxForm: {
+        marginRight: 0,
+
+        "& .MuiFormControlLabel-label": {
+            fontSize: "25px",
+        },
+    },
     checkbox: {
-        margin: "10px",
-        backgroundColor: "red"
+        "& svg": {
+            color: "white",
+            opacity: 1,
+            width: "30px",
+            height: "30px",
+        },
+    },
+    helperText: {
+        fontSize: "18px",
+        fontWeight: 400,
+        marginTop: "5px",
+        opacity: 0,
+    },
+    showHelperText: {
+        opacity: 1,
+        transition: "opacity 0.3s ease-in"
     }
 };
 
@@ -82,8 +109,8 @@ class Focus extends Component {
         this.setState({ formIsShowing: false });
         window.localStorage.setItem("focusName", JSON.stringify(this.state.focusName));
     }
-    handleCheck(){
-        this.setState(st => ({checked: !st.checked}))
+    handleCheck() {
+        this.setState(st => ({ checked: !st.checked }))
     }
     render() {
         const { focusName, formIsShowing, checked } = this.state;
@@ -101,18 +128,42 @@ class Focus extends Component {
                 />
             </form>
         );
+        const clearBtn = (
+            <IconButton
+                color='inherit'
+                aria-label='Edit your name'
+                onClick={() => this.setState({ formIsShowing: true })}
+                className={classNames(classes.editBtn)}
+            >
+                <ClearIcon />
+            </IconButton>
+        );
+        const addBtn = (
+            <IconButton
+                color='inherit'
+                aria-label='Edit your name'
+                onClick={() => this.setState({ formIsShowing: true })}
+                className={classNames(classes.editBtn)}
+            >
+                <AddIcon />
+            </IconButton>
+        );
         const focusCheckbox = (
-            <div >
-                <p>TODAY</p>
-                <FormControlLabel
+            <div>
+                <p className={classes.checkboxFormTitle}>TODAY</p>
+                <FormControlLabel className={classes.checkboxForm}
                     control={
                         <Checkbox
+                            className={classes.checkbox}
                             checked={checked} onChange={this.handleCheck}
-                            value={focusName} />
+                            value={focusName}
+                            color="default"
+                        />
                     }
                     label={focusName}
                 />
-                <p>Great work!</p>
+                {checked ? addBtn : clearBtn}
+                <p className={classNames(classes.helperText, {[classes.showHelperText]: checked})}>Great work!</p>
             </div>
         )
         return (
