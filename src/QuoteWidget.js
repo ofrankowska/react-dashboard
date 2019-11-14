@@ -10,7 +10,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const styles = {
     QuoteWidget: {
-        transform: "translateY(20px)",
+        transform: "translateY(35px)",
         transition: "transform 0.4s ease-in",
         "&:hover": {
             transform: "translateY(0)",
@@ -23,12 +23,16 @@ const styles = {
         },
         "&:hover button": {
             transform: "translateY(0)",
-            opacity: 0.7,
+            opacity: 0.9,
         },
         "&:hover button:hover": {
             opacity: 1
         },
     },
+    icon: {
+        padding: 0, 
+        margin: 0
+    }
 
 }
 
@@ -39,9 +43,12 @@ class QuoteWidget extends PureComponent {
             quotes: [],
             author: "",
             text: "",
-            id: ""
+            id: "",
+            favorite: false
         }
         this.getRandomQuote = this.getRandomQuote.bind(this);
+        this.addToFavorites = this.addToFavorites.bind(this);
+        this.removeFromFavorites = this.removeFromFavorites.bind(this);
     }
     async componentDidMount() {
         const response = await fetch(QUOTES_API);
@@ -49,51 +56,67 @@ class QuoteWidget extends PureComponent {
         this.setState({ quotes });
         this.getRandomQuote();
     }
-
     getRandomQuote() {
         const quotes = this.state.quotes;
         const randomNum = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomNum];
-        this.setState({ ...randomQuote, id: randomNum });
+        this.setState({ ...randomQuote, id: randomNum, favorite: false });
+    }
+    addToFavorites(){
+        const {text, author} = this.state;
+        this.setState({favorite: true});
+        this.props.addQuote({text, author});
+    }
+    removeFromFavorites(){
+        this.setState({favorite: false});
+        this.props.removeQuote(this.state.text);
     }
     render() {
-        const { author, text, id } = this.state;
+        const { author, text, id, favorite } = this.state;
         const { classes } = this.props;
+        const nextBtn = (
+            <IconButton
+                color='inherit'
+                aria-label='Add city weather'
+                onClick={this.getRandomQuote}
+                className={classes.icon}
+            >
+                <KeyboardArrowDownIcon fontSize='large' />
+            </IconButton>
+        );
+        const favoriteBorderBtn = (
+            <IconButton
+                color='inherit'
+                aria-label='Add quotes to favorites'
+                onClick={this.addToFavorites}
+                className={classes.icon}
+            >
+                <FavoriteBorderIcon />
+            </IconButton>
 
+        );
+        const favoriteFilledBtn = (
+            <IconButton
+                color='inherit'
+                aria-label='Remove quote from favorites'
+                onClick={this.removeFromFavorites}
+                className={classes.icon}
+            >
+                <FavoriteIcon />
+            </IconButton>
+
+        );
         return (
             <section className={classes.QuoteWidget}>
                 <TransitionGroup>
                     {text &&
-                    <CSSTransition key={id} timeout={300} classNames="fade">
-                        <Quote author={author} text={text} />
-                    </CSSTransition>
+                        <CSSTransition key={id} timeout={300} classNames="fade">
+                            <Quote author={author} text={text} />
+                        </CSSTransition>
                     }
                 </TransitionGroup>
-
-                <IconButton
-                    color='inherit'
-                    aria-label='Add city weather'
-                    onClick={this.getRandomQuote}
-                    style={{ padding: 0, margin: 0 }}
-                >
-                    <KeyboardArrowDownIcon fontSize='large' />
-                </IconButton>
-                <IconButton
-                    color='inherit'
-                    aria-label='Add city weather'
-                    onClick={this.getRandomQuote}
-                    style={{ padding: 0, margin: 0 }}
-                >
-                    <FavoriteBorderIcon  />
-                </IconButton>
-                <IconButton
-                    color='inherit'
-                    aria-label='Add city weather'
-                    onClick={this.getRandomQuote}
-                    style={{ padding: 0, margin: 0 }}
-                >
-                    <FavoriteIcon  />
-                </IconButton>
+                {nextBtn}
+                {favorite ? favoriteFilledBtn : favoriteBorderBtn}
             </section>
         )
     }

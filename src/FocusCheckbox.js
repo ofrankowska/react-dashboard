@@ -1,5 +1,4 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,7 +7,17 @@ import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from "@material-ui/icons/Clear";
 import { IconButton } from '@material-ui/core';
 
-const styles ={
+const styles = {
+    FocusCheckbox: {
+        "& svg": {
+            opacity: props => props.checked ? 1 : 0,
+            transition: "opacity 0.3s ease-in",
+        },
+        "&:hover svg": {
+            opacity: 1,
+        }
+
+    },
     checkboxFormTitle: {
         margin: 0
     },
@@ -20,12 +29,6 @@ const styles ={
             fontWeight: 400,
             textDecoration: props => props.checked ? "line-through" : "none",
         },
-        "& input.PrivateSwitchBase-input-140": {
-            transition: "text-decoration 0.3s ease-in",
-            background: "red"
-        },
-
-
     },
     checkbox: {
         "& svg": {
@@ -33,6 +36,7 @@ const styles ={
             opacity: 1,
             width: "30px",
             height: "30px",
+            
         },
     },
     helperText: {
@@ -43,7 +47,7 @@ const styles ={
         opacity: 0,
     },
     showHelperText: {
-        animation: "$fade-in-out 4s"
+        animation: "$fade-in-out 3.5s"
     },
     "@keyframes fade-in-out": {
         "20%": {
@@ -61,12 +65,13 @@ const styles ={
 }
 
 function FocusCheckbox(props) {
-    const {classes, checked, focusName, handleClick, handleCheck} = props;
+    const { classes, checked, focusName, handleClick, handleCheck } = props;
     const clearBtn = (
         <IconButton
             color='inherit'
             aria-label='Remove current focus'
             onClick={handleClick}
+            className={classes.cleatBtn}
         >
             <ClearIcon />
         </IconButton>
@@ -81,22 +86,22 @@ function FocusCheckbox(props) {
         </IconButton>
     );
     return (
-        <div>
-        <p className={classes.checkboxFormTitle}>TODAY</p>
-        <FormControlLabel className={classes.checkboxForm}
-            control={
-                <Checkbox
-                    className={classes.checkbox}
-                    checked={checked} onChange={handleCheck}
-                    value={focusName}
-                    color="default"
-                />
-            }
-            label={focusName}
-        />
-        {checked ? addBtn : clearBtn}
-        <p className={classNames(classes.helperText, { [classes.showHelperText]: checked })}>Great work!</p>
-    </div>
+        <div className={classes.FocusCheckbox}>
+            <p className={classes.checkboxFormTitle}>TODAY</p>
+            <FormControlLabel className={classes.checkboxForm}
+                control={
+                    <Checkbox
+                        className={classes.checkbox}
+                        checked={checked} onChange={handleCheck}
+                        value={focusName}
+                        color="default"
+                    />
+                }
+                label={focusName}
+            />
+            {checked ? addBtn : clearBtn}
+            <p className={classNames(classes.helperText, { [classes.showHelperText]: checked })}>Great work!</p>
+        </div>
 
     )
 }

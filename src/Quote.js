@@ -18,10 +18,9 @@ const styles = {
             marginBottom: "3px",
         },
         "& footer": {
-            fontWeight: 300,
-            opacity: 0.9
+            fontWeight: 400,
+            fontSize: "14px"
         },
-
     },
 
 }
