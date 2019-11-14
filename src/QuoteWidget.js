@@ -7,6 +7,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { IconButton } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import uuid from 'uuid/v4';
 
 const styles = {
     QuoteWidget: {
@@ -60,16 +61,16 @@ class QuoteWidget extends PureComponent {
         const quotes = this.state.quotes;
         const randomNum = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomNum];
-        this.setState({ ...randomQuote, id: randomNum, favorite: false });
+        this.setState({ ...randomQuote, id: uuid(), favorite: false });
     }
     addToFavorites(){
-        const {text, author} = this.state;
+        const {text, author, id} = this.state;
         this.setState({favorite: true});
-        this.props.addQuote({text, author});
+        this.props.addQuote({text, author, id});
     }
     removeFromFavorites(){
         this.setState({favorite: false});
-        this.props.removeQuote(this.state.text);
+        this.props.removeQuote(this.state.id);
     }
     render() {
         const { author, text, id, favorite } = this.state;

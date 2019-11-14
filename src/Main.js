@@ -41,7 +41,7 @@ const styles = {
     },
     weather: {
         position: "fixed",
-        top: "20px",
+        top: "30px",
         right: "20px",
         width: "150px",
         height: "150px",
@@ -77,7 +77,6 @@ const styles = {
     },
     button: {
         color: "white",
-        paddingTop: 0,
         "&:hover": {
             backgroundColor: "rgba(0,0,0,0.3)",
         }

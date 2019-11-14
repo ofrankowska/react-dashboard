@@ -6,7 +6,7 @@ class FavoriteQuotes extends Component {
         return (
             <div>
                 {favoriteQuotes.map(quote => (
-                    <div>
+                    <div key={quote.id}>
                         <h3>{quote.text}</h3>
                         <p>{quote.author}</p>
                     </div>

@@ -21,8 +21,8 @@ class App extends Component {
       this.syncLocalStorage
     );
   }
-  removeQuote(text) {
-    this.setState(st => ({favoriteQuotes: st.favoriteQuotes.filter(favoriteQuote => favoriteQuote.text !== text)}),
+  removeQuote(id) {
+    this.setState(st => ({favoriteQuotes: st.favoriteQuotes.filter(favoriteQuote => favoriteQuote.id !== id)}),
     this.syncLocalStorage);
   }
   syncLocalStorage() {
