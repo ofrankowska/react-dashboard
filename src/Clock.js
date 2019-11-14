@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
     time: {
-        fontSize: "8rem",
+        fontSize: "10rem",
         fontWeight: 400,
     }   
 }

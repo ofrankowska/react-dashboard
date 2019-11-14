@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
+import focusCheckbox from './FocusCheckbox';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import AddIcon from "@material-ui/icons/Add";
-import ClearIcon from "@material-ui/icons/Clear";
-import { IconButton } from '@material-ui/core';
-
+import FocusCheckbox from './FocusCheckbox';
 
 const styles = {
     Focus: {
         fontSize: "30px",
+        height: "111px",
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "20px"
     },
     textField: {
         "& input, label": {
@@ -53,34 +53,6 @@ const styles = {
             fontSize: "30px",
         },
     },
-    checkboxFormTitle: {
-        marginBottom: 0
-    },
-    checkboxForm: {
-        marginRight: 0,
-
-        "& .MuiFormControlLabel-label": {
-            fontSize: "25px",
-        },
-    },
-    checkbox: {
-        "& svg": {
-            color: "white",
-            opacity: 1,
-            width: "30px",
-            height: "30px",
-        },
-    },
-    helperText: {
-        fontSize: "18px",
-        fontWeight: 400,
-        marginTop: "5px",
-        opacity: 0,
-    },
-    showHelperText: {
-        opacity: 1,
-        transition: "opacity 0.3s ease-in"
-    }
 };
 
 class Focus extends Component {
@@ -92,25 +64,43 @@ class Focus extends Component {
             checked: false
         }
         this.handleChange = this.handleChange.bind(this);
+        this.updateLocalStorage = this.updateLocalStorage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheck = this.handleCheck.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     componentDidMount() {
-        const focusName = JSON.parse(window.localStorage.getItem("focusName"));
-        if (focusName) {
-            this.setState({ focusName, formIsShowing: false });
+        const focus = JSON.parse(window.localStorage.getItem("focus"));
+        if (focus && focus.focusName) {
+            this.setState({
+                focusName: focus.focusName,
+                checked: focus.checked,
+                formIsShowing: false
+            });
         }
     }
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value })
     }
+    updateLocalStorage() {
+        const focus = { focusName: this.state.focusName, checked: this.state.checked }
+        window.localStorage.setItem("focus", JSON.stringify(focus));
+    }
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({ formIsShowing: false });
-        window.localStorage.setItem("focusName", JSON.stringify(this.state.focusName));
+        if (this.state.focusName) {
+            this.setState({ formIsShowing: false }, () => this.updateLocalStorage());
+        }
     }
     handleCheck() {
-        this.setState(st => ({ checked: !st.checked }))
+        this.setState(st => ({ checked: !st.checked }), () => this.updateLocalStorage());
+    }
+    handleClick() {
+        this.setState({
+            focusName: "",
+            formIsShowing: true,
+            checked: false
+        }, () => this.updateLocalStorage());
     }
     render() {
         const { focusName, formIsShowing, checked } = this.state;
@@ -128,47 +118,9 @@ class Focus extends Component {
                 />
             </form>
         );
-        const clearBtn = (
-            <IconButton
-                color='inherit'
-                aria-label='Edit your name'
-                onClick={() => this.setState({ formIsShowing: true })}
-                className={classNames(classes.editBtn)}
-            >
-                <ClearIcon />
-            </IconButton>
-        );
-        const addBtn = (
-            <IconButton
-                color='inherit'
-                aria-label='Edit your name'
-                onClick={() => this.setState({ formIsShowing: true })}
-                className={classNames(classes.editBtn)}
-            >
-                <AddIcon />
-            </IconButton>
-        );
-        const focusCheckbox = (
-            <div>
-                <p className={classes.checkboxFormTitle}>TODAY</p>
-                <FormControlLabel className={classes.checkboxForm}
-                    control={
-                        <Checkbox
-                            className={classes.checkbox}
-                            checked={checked} onChange={this.handleCheck}
-                            value={focusName}
-                            color="default"
-                        />
-                    }
-                    label={focusName}
-                />
-                {checked ? addBtn : clearBtn}
-                <p className={classNames(classes.helperText, {[classes.showHelperText]: checked})}>Great work!</p>
-            </div>
-        )
         return (
             <div className={classes.Focus}>
-                {formIsShowing ? form : focusCheckbox}
+                {formIsShowing ? form : <FocusCheckbox checked={checked} focusName={focusName} handleClick={this.handleClick} handleCheck={this.handleCheck} />}
             </div>
 
 

@@ -8,7 +8,8 @@ import { IconButton } from '@material-ui/core';
 const styles = {
     Message: {
         fontSize: "48px",
-        paddingTop: "10px",
+        height: "70px",
+
         "&:hover svg": {
             opacity: 0.7,
             transition: "opacity 0.3s ease-in"
@@ -115,7 +116,7 @@ class Message extends Component {
         );
         const nameDisplay = (
             <span>
-                {' '}{userName}
+                {userName}
                 <IconButton
                     color='inherit'
                     aria-label='Edit your name'
@@ -129,7 +130,7 @@ class Message extends Component {
         )
         return (
             <div className={classes.Message}>
-                <span>{greeting},</span>
+                <span>{greeting}, </span>
                 {formIsShowing ? formDisplay : nameDisplay}
 
             </div>

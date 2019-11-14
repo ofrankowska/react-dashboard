@@ -44,13 +44,14 @@ const styles = {
         },
     },
     quote: {
-        bottom: "20px",
+        bottom: "10px",
         position: "fixed",
         left: "calc(-50vw + 50%)",
         right: "calc(-50vw + 50%)",
         marginLeft: "auto",
         marginRight: "auto",
         maxWidth: "700px",
+        padding: "10px"
     },
     morning: {
         backgroundImage: `url(${morningImg})`,
