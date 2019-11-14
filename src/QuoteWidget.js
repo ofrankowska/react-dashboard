@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import Quote from './Quote';
 import { QUOTES_API } from './constants';
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { IconButton } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -21,7 +23,7 @@ const styles = {
         },
         "&:hover button": {
             transform: "translateY(0)",
-            opacity: 0.6,
+            opacity: 0.7,
         },
         "&:hover button:hover": {
             opacity: 1
@@ -75,6 +77,22 @@ class QuoteWidget extends PureComponent {
                     style={{ padding: 0, margin: 0 }}
                 >
                     <KeyboardArrowDownIcon fontSize='large' />
+                </IconButton>
+                <IconButton
+                    color='inherit'
+                    aria-label='Add city weather'
+                    onClick={this.getRandomQuote}
+                    style={{ padding: 0, margin: 0 }}
+                >
+                    <FavoriteBorderIcon  />
+                </IconButton>
+                <IconButton
+                    color='inherit'
+                    aria-label='Add city weather'
+                    onClick={this.getRandomQuote}
+                    style={{ padding: 0, margin: 0 }}
+                >
+                    <FavoriteIcon  />
                 </IconButton>
             </section>
         )

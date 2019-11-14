@@ -3,6 +3,7 @@ import Clock from './Clock';
 import Message from './Message';
 import Focus from './Focus';
 import WeatherWidget from './WeatherWidget';
+import LoadingSpinner from './LoadingSpinner';
 import QuoteWidget from './QuoteWidget';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
@@ -21,6 +22,17 @@ const styles = {
         textShadow: "0 0 10px rgba(0, 0, 0, 0.568)",
         color: "white",
 
+    },
+    loadingScreen: {
+        position: "fixed",
+        zIndex: 100,
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left:0,
+        backgroundColor: "#1D2636",
+        display: "flex",
+        alignItems: "center",
     },
     weather: {
         position: "fixed",
@@ -72,9 +84,11 @@ class Main extends Component {
             isMorning: this.setHour() >= 6 && this.setHour() < 12,
             isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
             isEvening: this.setHour() >= 18 || this.setHour() < 6,
+            componentLoading: true
         }
     }
     componentDidMount() {
+        setTimeout(()=> this.setState({componentLoading: false}), 900);
         setInterval(() => {
             this.setState({
                 hour: this.setHour(),
@@ -88,7 +102,7 @@ class Main extends Component {
     setHour = () => new Date().getHours();
     setMinute = () => new Date().getMinutes();
     render() {
-        const { hour, min, isMorning, isAfternoon, isEvening } = this.state;
+        const { hour, min, isMorning, isAfternoon, isEvening, componentLoading } = this.state;
         const { classes } = this.props;
         return (
 
@@ -97,6 +111,7 @@ class Main extends Component {
                 [classes.afternoon]: isAfternoon,
                 [classes.evening]: isEvening,
             })}>
+                {componentLoading && <div className={classes.loadingScreen}><LoadingSpinner/></div>}
                 <section className={classes.weather}>
                     <WeatherWidget isEvening={isEvening} />
                 </section>

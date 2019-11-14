@@ -17,6 +17,7 @@ const styles ={
 
         "& .MuiFormControlLabel-label": {
             fontSize: "25px",
+            fontWeight: 400,
             textDecoration: props => props.checked ? "line-through" : "none",
         },
         "& input.PrivateSwitchBase-input-140": {
