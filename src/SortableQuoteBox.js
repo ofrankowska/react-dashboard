@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Quote from './Quote';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import {SortableElement} from 'react-sortable-hoc';
+import { SortableElement } from 'react-sortable-hoc';
 
 const styles = {
     SortableQuoteBox: {
@@ -14,7 +14,8 @@ const styles = {
         position: "relative",
         textAlign: "left",
         cursor: "pointer",
-        fontSize: "1.2em"
+        fontSize: "1.2em",
+        userSelect: "none",
     },
     deleteIcon: {
         position: "absolute",
@@ -30,14 +31,24 @@ const styles = {
     }
 }
 
-const SortableQuoteBox = SortableElement((props) => {
-    const {text, author, removeQuote, id, classes} = props;
-    return (
-        <div className={classes.SortableQuoteBox}>
-            <Quote text={text} author={author}/>
-            <DeleteOutlinedIcon className={classes.deleteIcon} onClick={()=>removeQuote(id)}/>
-        </div>
-    )
-})
+class SortableQuoteBox extends Component {
+    constructor(props) {
+        super(props);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+    handleDelete(e) {
+        e.stopPropagation();
+        this.props.openDialog(this.props.id);
+    }
+    render() {
+        const { text, author, classes } =this.props;
+        return (
+            <div className={classes.SortableQuoteBox}>
+                <Quote text={text} author={author} />
+                <DeleteOutlinedIcon className={classes.deleteIcon} onClick={this.handleDelete} />
+            </div>
+        )
+    }
+}
 
-export default withStyles(styles)(SortableQuoteBox);
+export default SortableElement(withStyles(styles)(SortableQuoteBox));
