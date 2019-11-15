@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QuoteBox from './QuoteBox';
+import SortableQuoteList from './SortableQuoteList';
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
 
 const styles = {
     FavoriteQuotes: {
@@ -43,7 +44,7 @@ class FavoriteQuotes extends Component {
         this.props.history.push('/')
     }
     render() {
-        const { favoriteQuotes, removeQuote, classes } = this.props;
+        const { favoriteQuotes, removeQuote, onSortEnd, classes } = this.props;
         return (
             <div className={classes.FavoriteQuotes}>
                 <AppBar position="static" className={classes.AppBar}>
@@ -54,14 +55,16 @@ class FavoriteQuotes extends Component {
                         <Button onClick={this.goBack} color="inherit" className={classes.goBackBtn}>Go Back<ExitToAppIcon /></Button>
                     </Toolbar>
                 </AppBar>
-                <section className={classes.colorBoxes}>
-                    {favoriteQuotes.map(quote => (
-                        <QuoteBox key={quote.id} text={quote.text} author={quote.author} id={quote.id} removeQuote={removeQuote} />
-                    ))}
-                </section>
+                <SortableQuoteList
+                    axis="xy"
+                    distance={20}
+                    onSortEnd={onSortEnd}
+                    favoriteQuotes={favoriteQuotes}
+                    removeQuote={removeQuote}
+                />
             </div>
         )
     }
 }
 
-export default withStyles(styles)(FavoriteQuotes);
+export default (withStyles(styles)(FavoriteQuotes));

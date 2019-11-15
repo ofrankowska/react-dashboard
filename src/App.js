@@ -3,6 +3,7 @@ import './App.css';
 import Main from './Main';
 import FavoriteQuotes from './FavoriteQuotes';
 import { Route, Switch } from "react-router-dom";
+import arrayMove from 'array-move';
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
     this.addQuote = this.addQuote.bind(this);
     this.removeQuote = this.removeQuote.bind(this);
     this.syncLocalStorage = this.syncLocalStorage.bind(this);
+    this.onSortEnd = this.onSortEnd.bind(this);
   }
   addQuote(quote) {
     this.setState(st => ({ favoriteQuotes: [...st.favoriteQuotes, quote] }),
@@ -23,6 +25,10 @@ class App extends Component {
   }
   removeQuote(id) {
     this.setState(st => ({favoriteQuotes: st.favoriteQuotes.filter(favoriteQuote => favoriteQuote.id !== id)}),
+    this.syncLocalStorage);
+  }
+  onSortEnd({oldIndex, newIndex}){
+    this.setState(st => ({favoriteQuotes: arrayMove(st.favoriteQuotes, oldIndex, newIndex)}),
     this.syncLocalStorage);
   }
   syncLocalStorage() {
@@ -34,7 +40,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" render={() => <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />} />
-          <Route exact path="/favorite-quotes" render={(routeProps) => <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} {...routeProps}/>} />
+          <Route exact path="/favorite-quotes" render={(routeProps) => <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} onSortEnd={this.onSortEnd} {...routeProps}/>} />
           <Route render={() => <Main />} />
         </Switch>
       </div>
