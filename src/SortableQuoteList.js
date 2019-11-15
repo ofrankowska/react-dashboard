@@ -8,7 +8,7 @@ const styles = {
     colorBoxes: {
 
         display: "grid",
-        gridTemplateColumns: "repeat(4,1fr)",
+        gridTemplateColumns: "repeat(3,1fr)",
         gridGap: "24px",
         margin: "24px"
     },

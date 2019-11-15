@@ -1,26 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SortableQuoteList from './SortableQuoteList';
+import Navigation from './Navigation';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 
 const styles = {
     FavoriteQuotes: {
         backgroundColor: "#1D2636",
         minHeight: "100vh",
-        paddingBottom: "12px"
-    },
-    AppBar: {
-        backgroundColor: "black",
-
-    },
-    title: {
-        marginRight: "auto",
+        paddingBottom: "12px",
+        display: "flex",
+        flexDirection: "column"
     },
     colorBoxes: {
         display: "grid",
@@ -28,43 +21,44 @@ const styles = {
         gridGap: "24px",
         margin: "24px"
     },
-    goBackBtn: {
-        "&:hover": {
-            color: "aquamarine",
-            transition: "color 0.3s ease-in"
-        }
+    message: {
+        color: "white",
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        marginTop: "-64px",
+    },
+    heartBrokenIcon: {
+        fontSize: "60px",
+        marginBottom: 0
     }
 }
-class FavoriteQuotes extends Component {
-    constructor(props) {
-        super(props);
-        this.goBack = this.goBack.bind(this);
-    }
-    goBack() {
-        this.props.history.push('/')
-    }
-    render() {
-        const { favoriteQuotes, removeQuote, onSortEnd, classes } = this.props;
-        return (
-            <div className={classes.FavoriteQuotes}>
-                <AppBar position="static" className={classes.AppBar}>
-                    <Toolbar>
-                        <Typography variant="h6" className={classes.title}>
-                            Favorite Quotes
-                        </Typography>
-                        <Button onClick={this.goBack} color="inherit" className={classes.goBackBtn}>Go Back<ExitToAppIcon /></Button>
-                    </Toolbar>
-                </AppBar>
-                <SortableQuoteList
-                    axis="xy"
-                    distance={20}
-                    onSortEnd={onSortEnd}
-                    favoriteQuotes={favoriteQuotes}
-                    removeQuote={removeQuote}
-                />
-            </div>
-        )
-    }
+function FavoriteQuotes(props) {
+    const { favoriteQuotes, removeQuote, onSortEnd, history, classes } = props;
+    const sortableQuoteList = (
+        <SortableQuoteList
+            axis="xy"
+            distance={20}
+            onSortEnd={onSortEnd}
+            favoriteQuotes={favoriteQuotes}
+            removeQuote={removeQuote}
+        />
+    )
+    const message = (
+        <div className={classes.message}>
+            <p className={classes.heartBrokenIcon}><FontAwesomeIcon icon={faHeartBroken} /></p>
+
+            <h1>It looks like you haven't added any quotes to favorites yet.</h1>
+
+        </div>
+    )
+    return (
+        <div className={classes.FavoriteQuotes}>
+            <Navigation title="Favorite Quotes" history={history} />
+            {favoriteQuotes.length > 0 ? sortableQuoteList : message}
+        </div>
+    )
 }
 
-export default (withStyles(styles)(FavoriteQuotes));
+export default withStyles(styles)(FavoriteQuotes);

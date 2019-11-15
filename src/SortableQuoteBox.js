@@ -14,12 +14,14 @@ const styles = {
         position: "relative",
         textAlign: "left",
         cursor: "pointer",
+        fontSize: "1.2em"
     },
     deleteIcon: {
         position: "absolute",
         bottom: "20px",
         right: "20px",
         cursor: "pointer",
+        padding: "5px",
         "&:hover": {
             color: "aquamarine",
             transform: "scale(1.2) rotate(5deg)",
