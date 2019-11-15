@@ -34,7 +34,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" render={() => <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />} />
-          <Route exact path="/favorite-quotes" render={(routeProps) => <FavoriteQuotes favoriteQuotes={favoriteQuotes} {...routeProps}/>} />
+          <Route exact path="/favorite-quotes" render={(routeProps) => <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} {...routeProps}/>} />
           <Route render={() => <Main />} />
         </Switch>
       </div>
