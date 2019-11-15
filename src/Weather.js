@@ -6,7 +6,6 @@ import { faSun, faMoon, faCloud, faCloudSunRain, faCloudMoonRain, faBolt, faSnow
 import CreateIcon from "@material-ui/icons/Create";
 import { IconButton } from '@material-ui/core';
 import classNames from "classnames";
-import { CSSTransition } from 'react-transition-group';
 
 
 const styles = {

@@ -13,7 +13,7 @@ const styles = {
         color: "white",
         position: "relative",
         textAlign: "left",
-        cursor: "pointer"
+        cursor: "pointer",
     },
     deleteIcon: {
         position: "absolute",

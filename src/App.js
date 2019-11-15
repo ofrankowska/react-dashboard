@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './App.css';
 import Main from './Main';
 import FavoriteQuotes from './FavoriteQuotes';
+import Page from './Page';
 import { Route, Switch } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import arrayMove from 'array-move';
 
 
@@ -24,12 +26,12 @@ class App extends Component {
     );
   }
   removeQuote(id) {
-    this.setState(st => ({favoriteQuotes: st.favoriteQuotes.filter(favoriteQuote => favoriteQuote.id !== id)}),
-    this.syncLocalStorage);
+    this.setState(st => ({ favoriteQuotes: st.favoriteQuotes.filter(favoriteQuote => favoriteQuote.id !== id) }),
+      this.syncLocalStorage);
   }
-  onSortEnd({oldIndex, newIndex}){
-    this.setState(st => ({favoriteQuotes: arrayMove(st.favoriteQuotes, oldIndex, newIndex)}),
-    this.syncLocalStorage);
+  onSortEnd({ oldIndex, newIndex }) {
+    this.setState(st => ({ favoriteQuotes: arrayMove(st.favoriteQuotes, oldIndex, newIndex) }),
+      this.syncLocalStorage);
   }
   syncLocalStorage() {
     window.localStorage.setItem("favoriteQuotes", JSON.stringify(this.state.favoriteQuotes));
@@ -38,11 +40,29 @@ class App extends Component {
     const { favoriteQuotes } = this.state;
     return (
       <div className="App">
-        <Switch>
-          <Route exact path="/" render={() => <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />} />
-          <Route exact path="/favorite-quotes" render={(routeProps) => <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} onSortEnd={this.onSortEnd} {...routeProps}/>} />
-          <Route render={() => <Main />} />
-        </Switch>
+        <Route render={({ location }) => (
+          <TransitionGroup>
+            <CSSTransition key={location.key} classNames="page" timeout={500}>
+              <Switch location={location}>
+                <Route exact path="/" render={() =>
+                  <Page>
+                    <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />
+                  </Page>
+                } />
+                <Route exact path="/favorite-quotes" render={(routeProps) =>
+                  <Page>
+                    <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} onSortEnd={this.onSortEnd} {...routeProps} />}
+              </Page>
+                } />
+                <Route render={() =>
+                  <Page>
+                    <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />
+                  </Page>
+                } />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )} />
       </div>
     );
   }
