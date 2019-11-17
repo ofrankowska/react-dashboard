@@ -11,8 +11,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import blue from '@material-ui/core/colors/blue';
-import red from '@material-ui/core/colors/red';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +19,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     FavoriteQuotes: {
+
         backgroundColor: "#1D2636",
         minHeight: "100vh",
         paddingBottom: "12px",
@@ -90,7 +89,9 @@ class FavoriteQuotes extends Component {
         return (
             <div className={classes.FavoriteQuotes}>
                 <Navigation title="Favorite Quotes" history={history} />
+                <div className="scrollableContainer"></div>
                 {favoriteQuotes.length > 0 ? sortableQuoteList : message}
+
                 <Dialog open={openDeleteDialog} aria-labelledby="delete-dialog-title" onClose={this.closeDialog}>
                     <DialogTitle id="delete-dialog-title">
                         Do you want to remove this quote from favorites?

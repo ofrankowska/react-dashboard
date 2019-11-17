@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import Quote from './Quote';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
@@ -31,7 +31,7 @@ const styles = {
     }
 }
 
-class SortableQuoteBox extends Component {
+class SortableQuoteBox extends PureComponent {
     constructor(props) {
         super(props);
         this.handleDelete = this.handleDelete.bind(this);

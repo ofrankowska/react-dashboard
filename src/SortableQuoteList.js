@@ -9,19 +9,23 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     colorBoxes: {
-
         display: "grid",
         gridTemplateColumns: "repeat(3,1fr)",
         gridGap: "24px",
-        margin: "24px"
+        margin: "24px",
+
     },
+    scrollableContainer: {
+        overflowY: "auto",
+        height: "91.2vh"
+    }
 }
 
 function SortableQuoteList(props) {
     const { favoriteQuotes, openDialog, classes } = props;
 
     return (
-        <section >
+        <section className={classes.scrollableContainer}>
             <TransitionGroup className={classes.colorBoxes}>
                 {favoriteQuotes.map((quote, i) => (
                     <CSSTransition key={quote.id} timeout={300} classNames="fade">
