@@ -1,25 +1,11 @@
 import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 import SortableQuoteBox from './SortableQuoteBox';
+import styles from './styles/SortableQuoteListStyles';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { withStyles } from '@material-ui/core/styles';
-
-
-const styles = {
-    colorBoxes: {
-        display: "grid",
-        gridTemplateColumns: "repeat(3,1fr)",
-        gridGap: "24px",
-        margin: "24px",
-
-    },
-    scrollableContainer: {
-        overflowY: "auto",
-        height: "91.2vh"
-    }
-}
 
 function SortableQuoteList(props) {
     const { favoriteQuotes, openDialog, classes } = props;

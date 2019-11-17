@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles/WeatherStyles';
 
 import { withStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,24 +7,6 @@ import { faSun, faMoon, faCloud, faCloudSunRain, faCloudMoonRain, faBolt, faSnow
 import CreateIcon from "@material-ui/icons/Create";
 import { IconButton } from '@material-ui/core';
 import classNames from "classnames";
-
-
-const styles = {
-    icon: {
-        fontSize: "4em",
-        margin: "10px"
-    },
-    text: {
-        margin: 0
-    },
-    editBtn: {
-        padding: 0,
-        paddingLeft: "2px",
-        "& svg": {
-            fontSize: "16px"
-        }
-    }
-}
 
 function Weather(props) {
     const { classes, isEvening, city, country, showForm, temperature, id } = props;
