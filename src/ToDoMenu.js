@@ -40,9 +40,6 @@ function ToDoListMenu(props) {
         setAnchorEl(null);
     };
 
-    const handleClick = event => {
-    }
-
     return (
         <div>
             <Button className={classes.button} aria-controls="todo-list-menu" aria-haspopup="true" onClick={handleOpen}>
