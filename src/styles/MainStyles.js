@@ -29,7 +29,7 @@ export default {
         position: "fixed",
         top: "30px",
         right: "20px",
-        width: "150px",
+        width: "110px",
         height: "150px",
         display: "flex",
         flexDirection: "column",
@@ -61,10 +61,15 @@ export default {
         maxWidth: "600px",
         padding: "10px"
     },
+    toDo: {
+        bottom: "30px",
+        right: "30px",
+        position: "fixed",
+    },
     nav: {
         position: "fixed",
         top: "20px",
-        left: "20px",
+        left: "30px",
     },
     button: {
         color: "white",

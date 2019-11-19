@@ -11,6 +11,10 @@ export default {
         paddingLeft: "2px",
         "& svg": {
             fontSize: "16px"
+        },
+        "&:hover": {
+            color: "aquamarine",
+            transition: "color 0.3s ease-in"
         }
     }
 }

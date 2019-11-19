@@ -5,11 +5,12 @@ import Focus from './Focus';
 import WeatherWidget from './WeatherWidget';
 import LoadingSpinner from './LoadingSpinner';
 import QuoteWidget from './QuoteWidget';
+import ToDoWidget from './ToDoWidget';
 import { Link } from 'react-router-dom';
 import styles from './styles/MainStyles';
 
-import Button from '@material-ui/core/Button';
 import { withStyles } from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
 import classNames from "classnames";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
@@ -58,7 +59,6 @@ class Main extends Component {
             })}>
                 <nav className={classes.nav}>
                     <Link to="/favorite-quotes"><Button className={classes.button}><FavoriteIcon fontSize="small"/> Quotes</Button></Link>
-                    <Button className={classes.button}>TODO</Button>
                 </nav>
                 {componentLoading && <div className={classes.loadingScreen}><LoadingSpinner /></div>}
                 <section className={classes.weather}>
@@ -73,6 +73,9 @@ class Main extends Component {
                 </section>
                 <section className={classes.quote}>
                     <QuoteWidget addQuote={addQuote} removeQuote={removeQuote}/>
+                </section>
+                <section className={classes.toDo}>
+                    <ToDoWidget/>
                 </section>
             </div>
         )
