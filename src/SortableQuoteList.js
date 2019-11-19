@@ -9,7 +9,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 function SortableQuoteList(props) {
     const { favoriteQuotes, openDialog, classes } = props;
-
     return (
         <section className={classes.scrollableContainer}>
             <TransitionGroup className={classes.colorBoxes}>

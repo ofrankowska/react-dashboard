@@ -22,12 +22,16 @@ class Main extends Component {
             isMorning: this.setHour() >= 6 && this.setHour() < 12,
             isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
             isEvening: this.setHour() >= 18 || this.setHour() < 6,
-            componentLoading: true
+            componentLoading: true,
         }
+        this._isMounted = false;
     }
     componentDidMount() {
+        this._isMounted = true
         setTimeout(() => this.setState({ componentLoading: false }), 900);
         setInterval(() => {
+            // prevent this.setState() on an unmounted component
+            if (this._isMounted) {
             this.setState({
                 hour: this.setHour(),
                 min: this.setMinute(),
@@ -35,7 +39,10 @@ class Main extends Component {
                 isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
                 isEvening: this.setHour() >= 18 || this.setHour() < 6,
             })
-        }, 10000);
+        }}, 1000);
+    }
+    componentWillUnmount(){
+        this._isMounted = false;
     }
     setHour = () => new Date().getHours();
     setMinute = () => new Date().getMinutes();
