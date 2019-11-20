@@ -3,43 +3,9 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import styles from './styles/ToDoListMenuStyles';
 
 import { withStyles } from "@material-ui/core/styles";
-
-const styles = {
-    button: {
-        padding: 0,
-        color: "white",
-        fontSize: "16px",
-        "&:hover": {
-            color: "aquamarine",
-            transition: "color 0.3s ease-in"
-        }
-    },
-    menu: {
-        "& div.MuiPopover-paper": {
-            backgroundColor: "#2E2E2E",
-            color: "white",
-            width: "200px"
-        },
-        "& .Mui-selected":{
-            color: "aquamarine",
-            background: "rgba(0,0,0,0.3)"
-        }
-    },
-    menuItem: {
-        display: "flex",
-        justifyContent: "space-between",
-        "&:hover": {
-            color: "aquamarine",
-            transition: "color 0.3s ease-in"
-        },
-        
-    },
-    number: {
-        color: "gray"
-    }
-}
 
 function ToDoListMenu(props) {
     const { currentList, changeList, toDoLists, classes } = props;

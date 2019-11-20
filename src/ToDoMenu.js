@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './styles/ToDoMenuStyles';
+
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -7,34 +9,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-    button: {
-        padding: 0,
-        color: "white",
-        fontSize: "16px",
-        "&:hover": {
-            color: "aquamarine",
-            transition: "color 0.3s ease-in"
-        }
-    },
-    menu: {
-        "& div.MuiPopover-paper": {
-            backgroundColor: "#2E2E2E",
-            color: "white",
-            fontSize: "10px",
-
-        }
-    },
-    menuItem: {
-        padding: "0px 10px",
-        "&:hover": {
-            color: "aquamarine",
-            transition: "color 0.3s ease-in"
-        }
-    }
-}
-
-function ToDoListMenu(props) {
+function ToDoMenu(props) {
     const { edit, remove, listName, listNames, moveToList, classes } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     // 1. the piece of state
@@ -75,4 +50,4 @@ function ToDoListMenu(props) {
     );
 }
 
-export default withStyles(styles)(ToDoListMenu);
+export default withStyles(styles)(ToDoMenu);

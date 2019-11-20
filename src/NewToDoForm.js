@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
+import styles from './styles/NewToDoFormStyles';
+
 import uuid from 'uuid/v4';
 
 import { withStyles } from "@material-ui/core/styles";
-
-const styles = {
-    textInput: {
-        background: "none",
-        border: "none",
-        color: "white",
-        fontSize: "16px",
-        padding: 0,
-    },
-}
-
 
 class NewToDoForm extends Component {
     constructor(props){

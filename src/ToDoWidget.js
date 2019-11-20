@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ToDoList from './ToDoList';
 import ToDoListMenu from './ToDoListMenu';
 import LoadingSpinner from './LoadingSpinner';
+import styles from './styles/ToDoWidgetStyles';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -9,32 +10,11 @@ import Button from '@material-ui/core/Button';
 
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-    button: {
-        position: "relative",
-        color: "white",
-        "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.3)",
-        }
-    },
-    window: {
-        position: "absolute",
-        bottom: "40px",
-        right: "0px",
-        backgroundColor: "#1D2636",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.568)",
-        borderRadius: "10px",
-        width: "320px",
-        padding: "20px",
-        textAlign: "left",
-    }
-};
-
 class ToDoWidget extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            windowOpen: true,
+            windowOpen: false,
             currentList: 'today',
             toDoLists: JSON.parse(window.localStorage.getItem("toDoLists")) || { inbox: [], today: [], done: [] },
             listLoading: false,
@@ -64,7 +44,7 @@ class ToDoWidget extends Component {
         }
         setTimeout(() => {
             this.setState({ currentList: newListName, listLoading: false })
-        }, 300)
+        }, 400)
     };
     updateList(listName, updatedList) {
         this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }), () => {
@@ -84,7 +64,7 @@ class ToDoWidget extends Component {
                         <CSSTransition key={windowOpen} timeout={300} classNames="fade">
                             <div className={classes.window}>
                                 <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
-                                {listLoading ? <LoadingSpinner /> :
+                                {listLoading ? <LoadingSpinner/> :
                                     <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList} listNames={Object.keys(toDoLists)}/>
                                 }
                             </div>
