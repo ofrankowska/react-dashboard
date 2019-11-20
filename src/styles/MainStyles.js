@@ -1,6 +1,7 @@
 import morningImg from '../img/morning.jpg';
 import afternoonImg from '../img/afternoon.jpg';
 import eveningImg from '../img/evening.jpg';
+import sizes from "./sizes";
 
 export default {
     root: {
@@ -29,7 +30,7 @@ export default {
         position: "fixed",
         top: "30px",
         right: "20px",
-        width: "110px",
+        width: "125px",
         height: "150px",
         display: "flex",
         flexDirection: "column",
@@ -38,10 +39,16 @@ export default {
         "& h5": {
             margin: 0
         },
+        [sizes.down("xs")]: {
+            right: "5px",
+        },
     },
     clock: {
         fontSize: "10rem",
         fontWeight: 400,
+        [sizes.down("xm")]: {
+            fontSize: "8rem",
+        },
 
     },
     messageFocus: {
@@ -59,17 +66,25 @@ export default {
         marginLeft: "auto",
         marginRight: "auto",
         maxWidth: "600px",
-        padding: "10px"
+        padding: "10px 80px",
     },
     toDo: {
         bottom: "30px",
         right: "30px",
         position: "fixed",
+        [sizes.down("xs")]: {
+            right: "5px",
+        },
+
     },
     nav: {
         position: "fixed",
         top: "20px",
         left: "30px",
+        [sizes.down("xs")]: {
+            left: "5px",
+        },
+
     },
     button: {
         color: "white",

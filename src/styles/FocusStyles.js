@@ -1,10 +1,15 @@
+import sizes from "./sizes";
+
 export default {
     Focus: {
         fontSize: "30px",
         height: "111px",
         display: "flex",
         flexDirection: "column",
-        marginTop: "20px"
+        marginTop: "20px",
+        [sizes.down("xs")]: {
+            fontSize: "25px",
+        },
     },
     textField: {
         "& input, label": {
@@ -38,12 +43,21 @@ export default {
     },
     focusField: {
         width: 400,
+        [sizes.down("xs")]: {
+            width: 335,
+        },
         "& input": {
             fontSize: "30px",
-            textAlign: "center"
+            textAlign: "center",
+            [sizes.down("xs")]: {
+                fontSize: "25px",
+            },
         },
         "& label": {
             fontSize: "30px",
+            [sizes.down("xs")]: {
+                fontSize: "25px",
+            },
         },
     },
 

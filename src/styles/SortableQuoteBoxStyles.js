@@ -1,8 +1,10 @@
+import sizes from "./sizes";
+
 export default {
     SortableQuoteBox: {
         backgroundColor: "rgb(46, 46, 46)",
         boxShadow: "0 0 5px rgba(0,0,0,0.7)",
-        height: "130px",
+        height: "150px",
         padding: "20px",
         color: "white",
         position: "relative",
@@ -10,6 +12,15 @@ export default {
         cursor: "pointer",
         fontSize: "1.2em",
         userSelect: "none",
+        [sizes.down("md")]: {
+            height: "190px",
+        },
+        [sizes.down("xm")]: {
+            height: "110px",
+        },
+        [sizes.down("xs")]: {
+            height: "190px",
+        },
     },
     deleteIcon: {
         position: "absolute",
