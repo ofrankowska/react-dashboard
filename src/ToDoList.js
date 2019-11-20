@@ -3,7 +3,7 @@ import NewToDoForm from './NewToDoForm';
 import ToDo from './ToDo';
 
 function ToDoList(props) {
-    const { toDoList, listName, updateList } = props;
+    const { toDoList, listName, updateList, addToInbox } = props;
 
     const addToDo = (newTask) => {
         const updatedList = [...toDoList, newTask];
@@ -19,13 +19,19 @@ function ToDoList(props) {
         updateList(listName, updatedList);
     }
     const toggleChecked = (id) => {
-        const updatedList = toDoList.map(todo => {
-            if (todo.id === id) {
-                return { ...todo, checked: !todo.checked };
-            }
-            return todo
-        });
-        updateList(listName, updatedList);
+        if (listName === 'inbox' || listName === 'today'){
+            const updatedList = toDoList.map(todo => {
+                if (todo.id === id) {
+                    return { ...todo, checked: !todo.checked };
+                }
+                return todo
+            });
+            updateList(listName, updatedList);    
+        } else if (listName === 'done'){
+            const todo = toDoList.find(todo => todo.id === id);
+            addToInbox({...todo, checked: false});
+            removeTask(id);
+        }
     }
 
     const removeTask = (id) => {
@@ -45,10 +51,14 @@ function ToDoList(props) {
     )
     return (
         <div className="ToDoList">
+            {todos.length > 0 ?
             <ul className="ToDoList-list" style={{paddingLeft: 0}}>
                 {todos}
             </ul>
-            <NewToDoForm add={addToDo} />
+            :
+                <div style={{height: "100px", display: "flex", justifyContent: "center", alignItems: "center"}}>Add a to-do to get started.</div>
+            }
+            <NewToDoForm add={addToDo} listName={listName}/>
         </div>
     )
 }

@@ -27,7 +27,8 @@ class NewToDoForm extends Component {
     handleSubmit(e){
         e.preventDefault();
         if (this.state.task){
-            const newTask = {...this.state, id: uuid(), checked: false};
+            let isDoneList = this.props.listName === "done" ? true : false;
+            const newTask = {...this.state, id: uuid(), checked: isDoneList};
             this.props.add(newTask);
             this.setState({task: ""});
         }
@@ -35,7 +36,7 @@ class NewToDoForm extends Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <input className={this.props.classes.textInput} id="task" name="task" type="text" value={this.state.task} onChange={this.handleChange} placeholder="New ToDo"/>
+                <input className={this.props.classes.textInput} id="task" name="task" type="text" value={this.state.task} onChange={this.handleChange} placeholder="New to-do"/>
             </form>
         )
     }

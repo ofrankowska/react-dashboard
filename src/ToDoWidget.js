@@ -19,10 +19,11 @@ const styles = {
         bottom: "40px",
         right: "0px",
         backgroundColor: "#1D2636",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.568)",
         borderRadius: "10px",
         width: "320px",
         padding: "20px",
-        textAlign: "left"
+        textAlign: "left",
     }
 };
 
@@ -36,19 +37,34 @@ class ToDoWidget extends Component {
         }
         this.toggleWindow = this.toggleWindow.bind(this);
         this.updateList = this.updateList.bind(this);
+        this.changeList = this.changeList.bind(this);
+        this.addToInbox = this.addToInbox.bind(this);
     }
     toggleWindow = () => this.setState(st => ({ windowOpen: !st.windowOpen }));
 
-    changeList = (listName) => this.setState({currentList: listName});
-
+    changeList(newListName, oldListName){
+        if(oldListName === 'inbox' || oldListName === 'today'){
+            const toDoLists = this.state.toDoLists;
+            let doneToDoList = toDoLists.done;
+            let uncheckedToDos = [];
+            toDoLists[oldListName].forEach(todo => {
+                if (todo.checked === false){
+                    uncheckedToDos.push(todo)
+                } else {
+                    doneToDoList.push(todo);
+                }
+            });
+            this.updateList('done', doneToDoList);
+            this.updateList(oldListName, uncheckedToDos);
+        }
+        this.setState({currentList: newListName})
+    };
     updateList(listName, updatedList) {
         this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }));
     }
-
-    toggleChecked() {
-
+    addToInbox(todo){
+        this.setState(st => ({toDoLists: {...st.toDoLists, inbox: [...st.toDoLists['inbox'], todo]}}))
     }
-
     render() {
         const { classes } = this.props;
         const { windowOpen, currentList, toDoLists } = this.state;
@@ -57,7 +73,7 @@ class ToDoWidget extends Component {
                 {windowOpen &&
                     <div className={classes.window}>
                         <ToDoListMenu currentList={currentList} changeList={this.changeList}/>
-                        <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} />
+                        <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToInbox={this.addToInbox}/>
                     </div>
                 }
                 <Button className={classes.button} onClick={this.toggleWindow}>

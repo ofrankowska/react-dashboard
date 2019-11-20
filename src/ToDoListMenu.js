@@ -41,7 +41,7 @@ function ToDoListMenu(props) {
 
     const handleClick = event => {
         const listName = event.target.innerText;
-        changeList(listName.toLowerCase());
+        changeList(listName.toLowerCase(), currentList);
         handleClose();
     }
 

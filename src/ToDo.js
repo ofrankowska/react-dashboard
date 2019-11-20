@@ -15,7 +15,7 @@ const styles = {
         display: "flex",
         position: "relative",
         marginBottom: "12px",
-        cursor: "pointer",
+        cursor: "default",
     },
     task: {
         textDecoration: props => props.checked ? "line-through" : "none",
@@ -119,8 +119,8 @@ class ToDo extends Component {
             </form>
         )
         return (
-            <div className={classes.ToDo}>
-                <li className={classes.listItem}>
+            <div className={classes.ToDo} >
+                <li className={classes.listItem} >
                     <input className={classes.checkboxInput} type="checkbox" checked={checked} onChange={this.handleToggle} />
                     <span className={classes.checkmark}><span className={classes.checked}></span></span>
                     {isEditing ? editMode : displayMode}
