@@ -6,7 +6,6 @@ function Clock(props) {
         return (parseInt(n, 10) < 10 ? '0' : '') + n;
     }
     return (
-
         <time>
             {addZero(hour)}<span>:</span>{addZero(min)}
         </time>
