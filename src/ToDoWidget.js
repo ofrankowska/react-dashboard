@@ -3,6 +3,8 @@ import ToDoList from './ToDoList';
 import ToDoListMenu from './ToDoListMenu';
 import LoadingSpinner from './LoadingSpinner';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import Button from '@material-ui/core/Button';
 
 import { withStyles } from "@material-ui/core/styles";
@@ -77,15 +79,21 @@ class ToDoWidget extends Component {
         const { windowOpen, currentList, toDoLists, listLoading } = this.state;
         return (
             <div>
-                
+                <TransitionGroup>
                 {windowOpen &&
+                                <CSSTransition key={windowOpen} timeout={300} classNames="fade">
+
                     <div className={classes.window}>
+                        
                         <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
                         {listLoading ? <LoadingSpinner /> :
                             <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList} />
                         }
                     </div>
+                    </CSSTransition>
                 }
+                
+                </TransitionGroup>
                 <Button className={classes.button} onClick={this.toggleWindow}>
                     TODO
                 </Button>
