@@ -33,7 +33,7 @@ class ToDoWidget extends Component {
         this.state = {
             windowOpen: true,
             currentList: 'today',
-            toDoLists: { inbox: [], today: [{task: "laundry", id: 1, checked: false}], done: [{task: "breakfast", id: 2, checked: true}] }
+            toDoLists: JSON.parse(window.localStorage.getItem("toDoLists")) || { inbox: [], today: [], done: [] }
         }
         this.toggleWindow = this.toggleWindow.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -60,10 +60,12 @@ class ToDoWidget extends Component {
         this.setState({currentList: newListName})
     };
     updateList(listName, updatedList) {
-        this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }));
+        this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }), () => {
+            window.localStorage.setItem("toDoLists", JSON.stringify(this.state.toDoLists))
+        });
     }
     addToList(listName, todo){
-        this.setState(st => ({toDoLists: {...st.toDoLists, [listName]: [...st.toDoLists['inbox'], todo]}}))
+        this.updateList(listName, [...this.state.toDoLists[listName], todo])
     }
     render() {
         const { classes } = this.props;
