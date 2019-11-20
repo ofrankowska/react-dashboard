@@ -21,11 +21,20 @@ const styles = {
             backgroundColor: "#2E2E2E",
             color: "white",
             width: "200px"
+        },
+        "& .Mui-selected":{
+            color: "aquamarine",
+            background: "rgba(0,0,0,0.3)"
         }
     },
     menuItem: {
         display: "flex",
         justifyContent: "space-between",
+        "&:hover": {
+            color: "aquamarine",
+            transition: "color 0.3s ease-in"
+        },
+        
     },
     number: {
         color: "gray"
@@ -52,7 +61,7 @@ function ToDoListMenu(props) {
         handleClose();
     }
     const menuItems = Object.keys(toDoLists).map(name =>
-        <MenuItem onClick={() => handleClick(name)} key={name} className={classes.menuItem}>
+        <MenuItem onClick={() => handleClick(name)} key={name} className={classes.menuItem} selected={name === currentList}>
             <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span> <span className={classes.number}>{toDoLists[name].length}</span>
         </MenuItem>
     )

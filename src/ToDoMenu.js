@@ -21,6 +21,15 @@ const styles = {
         "& div.MuiPopover-paper": {
             backgroundColor: "#2E2E2E",
             color: "white",
+            fontSize: "10px",
+
+        }
+    },
+    menuItem: {
+        padding: "0px 10px",
+        "&:hover": {
+            color: "aquamarine",
+            transition: "color 0.3s ease-in"
         }
     }
 }
@@ -53,8 +62,10 @@ function ToDoListMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={edit}>Edit</MenuItem>
-                <MenuItem onClick={remove}>Delete</MenuItem>
+                <MenuItem className={classes.menuItem} onClick={edit}>Edit</MenuItem>
+                {/* <MenuItem className={classes.menuItem} onClick={open}>Move to...</MenuItem> */}
+                <hr/>
+                <MenuItem className={classes.menuItem} onClick={remove}>Delete</MenuItem>
             </Menu>
         </div>
     );

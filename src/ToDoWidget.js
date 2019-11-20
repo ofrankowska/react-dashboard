@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ToDoList from './ToDoList';
 import ToDoListMenu from './ToDoListMenu';
+import LoadingSpinner from './LoadingSpinner';
 
 import Button from '@material-ui/core/Button';
 
@@ -33,7 +34,8 @@ class ToDoWidget extends Component {
         this.state = {
             windowOpen: true,
             currentList: 'today',
-            toDoLists: JSON.parse(window.localStorage.getItem("toDoLists")) || { inbox: [], today: [], done: [] }
+            toDoLists: JSON.parse(window.localStorage.getItem("toDoLists")) || { inbox: [], today: [], done: [] },
+            listLoading: false,
         }
         this.toggleWindow = this.toggleWindow.bind(this);
         this.updateList = this.updateList.bind(this);
@@ -42,13 +44,14 @@ class ToDoWidget extends Component {
     }
     toggleWindow = () => this.setState(st => ({ windowOpen: !st.windowOpen }));
 
-    changeList(newListName, oldListName){
-        if(oldListName === 'inbox' || oldListName === 'today'){
+    changeList(newListName, oldListName) {
+        this.setState({ listLoading: true });
+        if (oldListName === 'inbox' || oldListName === 'today') {
             const toDoLists = this.state.toDoLists;
             let doneToDoList = toDoLists.done;
             let uncheckedToDos = [];
             toDoLists[oldListName].forEach(todo => {
-                if (todo.checked === false){
+                if (todo.checked === false) {
                     uncheckedToDos.push(todo)
                 } else {
                     doneToDoList.push(todo);
@@ -57,25 +60,29 @@ class ToDoWidget extends Component {
             this.updateList('done', doneToDoList);
             this.updateList(oldListName, uncheckedToDos);
         }
-        this.setState({currentList: newListName})
+        setTimeout(() => {
+            this.setState({ currentList: newListName, listLoading: false })
+        }, 300)
     };
     updateList(listName, updatedList) {
         this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }), () => {
             window.localStorage.setItem("toDoLists", JSON.stringify(this.state.toDoLists))
         });
     }
-    addToList(listName, todo){
+    addToList(listName, todo) {
         this.updateList(listName, [...this.state.toDoLists[listName], todo])
     }
     render() {
         const { classes } = this.props;
-        const { windowOpen, currentList, toDoLists } = this.state;
+        const { windowOpen, currentList, toDoLists, listLoading } = this.state;
         return (
             <div>
                 {windowOpen &&
                     <div className={classes.window}>
-                        <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists}/>
-                        <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList}/>
+                        <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
+                        {listLoading ? <LoadingSpinner /> :
+                            <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList} />
+                        }
                     </div>
                 }
                 <Button className={classes.button} onClick={this.toggleWindow}>
