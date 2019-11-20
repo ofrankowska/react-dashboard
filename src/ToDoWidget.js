@@ -38,7 +38,7 @@ class ToDoWidget extends Component {
         this.toggleWindow = this.toggleWindow.bind(this);
         this.updateList = this.updateList.bind(this);
         this.changeList = this.changeList.bind(this);
-        this.addToInbox = this.addToInbox.bind(this);
+        this.addToList = this.addToList.bind(this);
     }
     toggleWindow = () => this.setState(st => ({ windowOpen: !st.windowOpen }));
 
@@ -62,8 +62,8 @@ class ToDoWidget extends Component {
     updateList(listName, updatedList) {
         this.setState(st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }));
     }
-    addToInbox(todo){
-        this.setState(st => ({toDoLists: {...st.toDoLists, inbox: [...st.toDoLists['inbox'], todo]}}))
+    addToList(listName, todo){
+        this.setState(st => ({toDoLists: {...st.toDoLists, [listName]: [...st.toDoLists['inbox'], todo]}}))
     }
     render() {
         const { classes } = this.props;
@@ -72,8 +72,8 @@ class ToDoWidget extends Component {
             <div>
                 {windowOpen &&
                     <div className={classes.window}>
-                        <ToDoListMenu currentList={currentList} changeList={this.changeList}/>
-                        <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToInbox={this.addToInbox}/>
+                        <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists}/>
+                        <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList}/>
                     </div>
                 }
                 <Button className={classes.button} onClick={this.toggleWindow}>

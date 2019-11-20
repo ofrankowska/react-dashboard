@@ -3,7 +3,7 @@ import NewToDoForm from './NewToDoForm';
 import ToDo from './ToDo';
 
 function ToDoList(props) {
-    const { toDoList, listName, updateList, addToInbox } = props;
+    const { toDoList, listName, updateList, addToList } = props;
 
     const addToDo = (newTask) => {
         const updatedList = [...toDoList, newTask];
@@ -29,7 +29,7 @@ function ToDoList(props) {
             updateList(listName, updatedList);    
         } else if (listName === 'done'){
             const todo = toDoList.find(todo => todo.id === id);
-            addToInbox({...todo, checked: false});
+            addToList('inbox',{...todo, checked: false});
             removeTask(id);
         }
     }

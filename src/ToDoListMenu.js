@@ -20,12 +20,20 @@ const styles = {
         "& div.MuiPopover-paper": {
             backgroundColor: "#2E2E2E",
             color: "white",
+            width: "200px"
         }
+    },
+    menuItem: {
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    number: {
+        color: "gray"
     }
 }
 
 function ToDoListMenu(props) {
-    const { currentList, changeList, classes} = props;
+    const { currentList, changeList, toDoLists, classes } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     // 1. the piece of state
     // 2. function to update that piece of state
@@ -39,29 +47,31 @@ function ToDoListMenu(props) {
         setAnchorEl(null);
     };
 
-    const handleClick = event => {
-        const listName = event.target.innerText;
-        changeList(listName.toLowerCase(), currentList);
+    const handleClick = name => {
+        changeList(name, currentList);
         handleClose();
     }
-
+    const menuItems = Object.keys(toDoLists).map(name =>
+        <MenuItem onClick={() => handleClick(name)} key={name} className={classes.menuItem}>
+            <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span> <span className={classes.number}>{toDoLists[name].length}</span>
+        </MenuItem>
+    )
     return (
         <div>
             <Button className={classes.button} aria-controls="todo-list-menu" aria-haspopup="true" onClick={handleOpen}>
-                {currentList} 
+                {currentList}
                 <KeyboardArrowDownIcon />
             </Button>
             <Menu
-            className={classes.menu}
+                className={classes.menu}
                 id="todo-list-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClick}>Inbox</MenuItem>
-                <MenuItem onClick={handleClick}>Today</MenuItem>
-                <MenuItem onClick={handleClick}>Done</MenuItem>
+                {menuItems}
+
             </Menu>
         </div>
     );
