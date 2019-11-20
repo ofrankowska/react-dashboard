@@ -35,10 +35,11 @@ const styles = {
 }
 
 function ToDoListMenu(props) {
-    const { edit, remove, classes } = props;
+    const { edit, remove, listName, listNames, moveToList, classes } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     // 1. the piece of state
     // 2. function to update that piece of state
+    const otherListNames = listNames.filter(name => name !== listName);
 
     const handleOpen = event => {
         setAnchorEl(event.currentTarget);
@@ -63,8 +64,11 @@ function ToDoListMenu(props) {
                 onClose={handleClose}
             >
                 <MenuItem className={classes.menuItem} onClick={edit}>Edit</MenuItem>
-                {/* <MenuItem className={classes.menuItem} onClick={open}>Move to...</MenuItem> */}
-                <hr/>
+                <hr />
+                {otherListNames.map(name =>
+                    <MenuItem className={classes.menuItem} onClick={() => moveToList(name)} key={name}>Move to {name.charAt(0).toUpperCase() + name.slice(1)}</MenuItem>
+                )}
+                <hr />
                 <MenuItem className={classes.menuItem} onClick={remove}>Delete</MenuItem>
             </Menu>
         </div>

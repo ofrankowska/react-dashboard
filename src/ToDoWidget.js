@@ -80,19 +80,17 @@ class ToDoWidget extends Component {
         return (
             <div>
                 <TransitionGroup>
-                {windowOpen &&
-                                <CSSTransition key={windowOpen} timeout={300} classNames="fade">
+                    {windowOpen &&
+                        <CSSTransition key={windowOpen} timeout={300} classNames="fade">
+                            <div className={classes.window}>
+                                <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
+                                {listLoading ? <LoadingSpinner /> :
+                                    <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList} listNames={Object.keys(toDoLists)}/>
+                                }
+                            </div>
+                        </CSSTransition>
+                    }
 
-                    <div className={classes.window}>
-                        
-                        <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
-                        {listLoading ? <LoadingSpinner /> :
-                            <ToDoList toDoList={toDoLists[currentList]} listName={currentList} updateList={this.updateList} addToList={this.addToList} />
-                        }
-                    </div>
-                    </CSSTransition>
-                }
-                
                 </TransitionGroup>
                 <Button className={classes.button} onClick={this.toggleWindow}>
                     TODO

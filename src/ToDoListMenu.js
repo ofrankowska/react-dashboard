@@ -62,7 +62,8 @@ function ToDoListMenu(props) {
     }
     const menuItems = Object.keys(toDoLists).map(name =>
         <MenuItem onClick={() => handleClick(name)} key={name} className={classes.menuItem} selected={name === currentList}>
-            <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span> <span className={classes.number}>{toDoLists[name].length}</span>
+            <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span> 
+            <span className={classes.number}>{toDoLists[name].length}</span>
         </MenuItem>
     )
     return (

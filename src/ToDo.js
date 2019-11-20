@@ -89,6 +89,7 @@ class ToDo extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
+        this.handleMove = this.handleMove.bind(this);
     }
     toggleForm() {
         this.setState(st => ({ isEditing: !st.isEditing }));
@@ -107,9 +108,12 @@ class ToDo extends Component {
     handleRemove() {
         this.props.remove(this.props.id);
     }
+    handleMove(listName) {
+        this.props.moveToList(listName, this.props.id)
+    }
     render() {
         const { isEditing, task } = this.state;
-        const { checked, classes } = this.props;
+        const { checked, listName, listNames, classes } = this.props;
         let displayMode = (
             <span className={classNames(classes.task)}>{this.props.task}</span>
         )
@@ -126,7 +130,7 @@ class ToDo extends Component {
                     {isEditing ? editMode : displayMode}
                 </li>
                 {!isEditing && <div>
-                    <ToDoMenu edit={this.toggleForm} remove={this.handleRemove}/>
+                    <ToDoMenu edit={this.toggleForm} remove={this.handleRemove} listName={listName} listNames={listNames} moveToList={this.handleMove}/>
                 </div>}
             </div>
         )
