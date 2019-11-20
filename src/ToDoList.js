@@ -2,6 +2,8 @@ import React from 'react';
 import NewToDoForm from './NewToDoForm';
 import ToDo from './ToDo';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 function ToDoList(props) {
     const { toDoList, listName, updateList, addToList } = props;
 
@@ -19,17 +21,17 @@ function ToDoList(props) {
         updateList(listName, updatedList);
     }
     const toggleChecked = (id) => {
-        if (listName === 'inbox' || listName === 'today'){
+        if (listName === 'inbox' || listName === 'today') {
             const updatedList = toDoList.map(todo => {
                 if (todo.id === id) {
                     return { ...todo, checked: !todo.checked };
                 }
                 return todo
             });
-            updateList(listName, updatedList);    
-        } else if (listName === 'done'){
+            updateList(listName, updatedList);
+        } else if (listName === 'done') {
             const todo = toDoList.find(todo => todo.id === id);
-            addToList('inbox',{...todo, checked: false});
+            addToList('inbox', { ...todo, checked: false });
             removeTask(id);
         }
     }
@@ -39,6 +41,7 @@ function ToDoList(props) {
         updateList(listName, updatedList);
     }
     let todos = toDoList.map(todo =>
+        <CSSTransition key={todo.id} timeout={300} classNames="fade">
         <ToDo
             task={todo.task}
             checked={todo.checked}
@@ -48,17 +51,20 @@ function ToDoList(props) {
             toggle={toggleChecked}
             remove={removeTask}
         />
+        </CSSTransition>
     )
     return (
         <div className="ToDoList">
             {todos.length > 0 ?
-            <ul className="ToDoList-list" style={{paddingLeft: 0}}>
-                {todos}
-            </ul>
-            :
-                <div style={{height: "100px", display: "flex", justifyContent: "center", alignItems: "center"}}>Add a to-do to get started.</div>
+                <ul className="ToDoList-list" style={{ paddingLeft: 0 }}>
+                    <TransitionGroup>
+                        {todos}
+                    </TransitionGroup>
+                </ul>
+                :
+                <div style={{ height: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>Add a to-do to get started.</div>
             }
-            <NewToDoForm add={addToDo} listName={listName}/>
+            <NewToDoForm add={addToDo} listName={listName} />
         </div>
     )
 }

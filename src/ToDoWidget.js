@@ -77,6 +77,7 @@ class ToDoWidget extends Component {
         const { windowOpen, currentList, toDoLists, listLoading } = this.state;
         return (
             <div>
+                
                 {windowOpen &&
                     <div className={classes.window}>
                         <ToDoListMenu currentList={currentList} changeList={this.changeList} toDoLists={toDoLists} />
