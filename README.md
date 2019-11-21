@@ -9,7 +9,7 @@ Inspired by <a href="https://momentumdash.com">Momentum</a>.
 ![image](https://i.imgur.com/08HRmwe.jpg)
 
 ## Weather of a chosen location 
-Using [OpenWeather API](https://openweathermap.org/)
+- Using [OpenWeather API](https://openweathermap.org/)
 ![image](https://i.imgur.com/YoztzbA.jpg)
 
 ## Three to-do lists
@@ -21,7 +21,7 @@ Using [OpenWeather API](https://openweathermap.org/)
 ![image](https://i.imgur.com/JPC3LBf.png)
 
 ## Inspirational quotes
-Using [Quotes Free API](https://type.fit/api/quotes)
+- Using [Quotes Free API](https://type.fit/api/quotes)
 ![image](https://i.imgur.com/eYTjfaP.png)
 
 ## Sortable list of your favorite quotes
