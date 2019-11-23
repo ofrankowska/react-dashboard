@@ -9,8 +9,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 import { withStyles } from "@material-ui/core/styles";
 
-function ToDoMenu(props) {
-    const { edit, remove, listName, listNames, moveToList, classes } = props;
+const ToDoMenu = ({ edit, remove, listName, listNames, moveToList, classes }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     // 1. the piece of state
     // 2. function to update that piece of state

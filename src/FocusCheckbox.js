@@ -9,8 +9,7 @@ import AddIcon from "@material-ui/icons/Add";
 import ClearIcon from "@material-ui/icons/Clear";
 import { IconButton } from '@material-ui/core';
 
-function FocusCheckbox(props) {
-    const { classes, checked, focusName, handleClick, handleCheck } = props;
+const FocusCheckbox = ({ classes, checked, focusName, handleClick, handleCheck }) => {
     const clearBtn = (
         <IconButton
             color='inherit'

@@ -7,8 +7,7 @@ import styles from './styles/ToDoListMenuStyles';
 
 import { withStyles } from "@material-ui/core/styles";
 
-function ToDoListMenu(props) {
-    const { currentList, changeList, toDoLists, classes } = props;
+const ToDoListMenu = ({ currentList, changeList, toDoLists, classes }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     // 1. the piece of state
     // 2. function to update that piece of state

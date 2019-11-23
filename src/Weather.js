@@ -8,8 +8,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import { IconButton } from '@material-ui/core';
 import classNames from "classnames";
 
-function Weather(props) {
-    const { classes, isEvening, city, country, showForm, temperature, id } = props;
+const Weather = ({ classes, isEvening, city, country, showForm, temperature, id }) => {
     const icon = (id) => {
         const weather_icons = {
             thunderstorm: [faBolt, faBolt],

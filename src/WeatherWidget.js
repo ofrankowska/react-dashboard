@@ -12,9 +12,10 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 class WeatherWidget extends PureComponent {
     constructor(props) {
         super(props);
+        const location = JSON.parse(window.localStorage.getItem("location"));
         this.state = {
-            city: "",
-            country: "",
+            city: location.city || "",
+            country: location.country || "",
             formShowing: false,
             temperature: "",
             id: "",
@@ -27,11 +28,11 @@ class WeatherWidget extends PureComponent {
 
     }
     componentDidMount() {
-        const location = JSON.parse(window.localStorage.getItem("location"));
-        if (location) {
-            this.updateLocation(location.city, location.country);
+        if (this.state.city && this.state.country) {
+            this.getData();
         }
     }
+
     async locationExists(city, country) {
         const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
         return res.status === 404 ? false : true;

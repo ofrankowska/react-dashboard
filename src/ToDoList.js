@@ -4,12 +4,11 @@ import ToDo from './ToDo';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-function ToDoList(props) {
-    const { toDoList, listName, listNames, updateList, addToList } = props;
+const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
 
     const addToDo = (newTask) => {
         const updatedList = [...toDoList, newTask];
-        props.updateList(listName, updatedList);
+        updateList(listName, updatedList);
     }
     const updateTask = (updatedTask, id) => {
         const updatedList = toDoList.map(todo => {
@@ -50,10 +49,8 @@ function ToDoList(props) {
     let todos = toDoList.map(todo =>
         <CSSTransition key={todo.id} timeout={300} classNames="fade">
             <ToDo
-                task={todo.task}
-                checked={todo.checked}
+                {...todo}
                 key={todo.id}
-                id={todo.id}
                 update={updateTask}
                 toggle={toggleChecked}
                 remove={removeTask}

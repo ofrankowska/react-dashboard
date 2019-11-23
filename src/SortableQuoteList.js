@@ -14,7 +14,7 @@ function SortableQuoteList(props) {
             <TransitionGroup className={classes.colorBoxes}>
                 {favoriteQuotes.map((quote, i) => (
                     <CSSTransition key={quote.id} timeout={300} classNames="fade">
-                        <SortableQuoteBox index={i} key={quote.id} text={quote.text} author={quote.author} id={quote.id} openDialog={openDialog} />
+                        <SortableQuoteBox index={i} key={quote.id} {...quote} openDialog={openDialog} />
                     </CSSTransition>
                 ))}
             </TransitionGroup>
