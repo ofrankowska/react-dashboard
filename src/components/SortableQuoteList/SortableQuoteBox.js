@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import Quote from './Quote';
-import styles from './styles/SortableQuoteBoxStyles';
+import Quote from '../Quote/Quote';
+import styles from './SortableQuoteBoxStyles';
 
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { SortableElement } from 'react-sortable-hoc';

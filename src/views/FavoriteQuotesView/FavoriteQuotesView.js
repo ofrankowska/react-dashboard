@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SortableQuoteList from './SortableQuoteList';
-import Navigation from './Navigation';
-import styles from './styles/FavoriteQuotesStyles';
+import SortableQuoteList from '../../components/SortableQuoteList/SortableQuoteList';
+import Navigation from '../../components/Navigation/Navigation'
+import styles from './FavoriteQuotesViewStyles';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { withStyles } from '@material-ui/core/styles';
 
-class FavoriteQuotes extends Component {
+class FavoriteQuotesView extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -89,4 +89,4 @@ class FavoriteQuotes extends Component {
     }
 }
 
-export default withStyles(styles)(FavoriteQuotes);
+export default withStyles(styles)(FavoriteQuotesView);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles/NavigationStyles';
+import styles from './NavigationStyles';
 
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';

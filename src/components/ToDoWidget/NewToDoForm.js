@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles/NewToDoFormStyles';
+import styles from '../../styles/NewToDoFormStyles';
 
 import uuid from 'uuid/v4';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles/WeatherMetaFormStyles';
+import styles from './WeatherMetaFormStyles';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -64,7 +64,7 @@ class WeatherMetaForm extends Component {
                             onChange={this.handleChange}
                             fullWidth
                             validators={["required"]}
-                            errorMessages={["Enter City"]}
+                            errorMessages={["Enter City Name"]}
                             className={classes.input}
                         />
                         <TextValidator

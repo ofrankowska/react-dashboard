@@ -1,7 +1,7 @@
 import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 import SortableQuoteBox from './SortableQuoteBox';
-import styles from './styles/SortableQuoteListStyles';
+import styles from './SortableQuoteListStyles';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 

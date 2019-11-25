@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ToDoMenu from './ToDoMenu';
 import classNames from "classnames";
-import styles from './styles/ToDoStyles';
+import styles from './ToDoStyles';
 
 import { withStyles } from "@material-ui/core/styles";
 

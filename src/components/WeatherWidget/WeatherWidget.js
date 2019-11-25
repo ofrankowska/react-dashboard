@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import Weather from './Weather';
 import WeatherMetaForm from './WeatherMetaForm';
-import LoadingSpinner from './LoadingSpinner';
-import { WEATHER_API_KEY, WEATHER_API_BASE } from './constants';
-
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
+const WEATHER_API_KEY = "3190d1d029a812e6a5365798e442ad0b";
+const WEATHER_API_BASE = "https://api.openweathermap.org/data/2.5/weather?q=";
 
 class WeatherWidget extends PureComponent {
     constructor(props) {
@@ -82,7 +82,7 @@ class WeatherWidget extends PureComponent {
             <Weather isEvening={isEvening} country={country} city={city} showForm={this.showForm} temperature={temperature} id={id} />
         );
         const addLocationBtn = (
-            <div>
+            <>
                 <h5>WEATHER</h5>
                 <IconButton
                     color='inherit'
@@ -91,7 +91,7 @@ class WeatherWidget extends PureComponent {
                 >
                     <AddCircleOutlineIcon fontSize='large' />
                 </IconButton>
-            </div>
+            </>
         );
         return (
             <div>

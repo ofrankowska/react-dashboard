@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import Quote from './Quote';
-import { QUOTES_API } from './constants';
-import styles from './styles/QuoteWidgetStyles';
+import Quote from '../Quote/Quote';
+import styles from './QuoteWidgetStyles';
 
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -10,6 +9,9 @@ import { IconButton } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid/v4';
+
+const QUOTES_API = "https://type.fit/api/quotes";
+
 
 class QuoteWidget extends PureComponent {
     constructor(props) {

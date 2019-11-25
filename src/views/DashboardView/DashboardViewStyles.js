@@ -1,7 +1,7 @@
-import morningImg from '../img/morning.jpg';
-import afternoonImg from '../img/afternoon.jpg';
-import eveningImg from '../img/evening.jpg';
-import sizes from "./sizes";
+import morningImg from '../../assets/images/morning.jpg';
+import afternoonImg from '../../assets/images/afternoon.jpg';
+import eveningImg from '../../assets/images/evening.jpg';
+import sizes from "../../styles/sizes";
 
 export default {
     root: {
@@ -26,7 +26,7 @@ export default {
         display: "flex",
         alignItems: "center",
     },
-    weather: {
+    weatherWrapper: {
         position: "fixed",
         top: "30px",
         right: "20px",
@@ -43,7 +43,7 @@ export default {
             right: "5px",
         },
     },
-    clock: {
+    clockWrapper: {
         fontSize: "10rem",
         fontWeight: 400,
         [sizes.down("xm")]: {
@@ -51,14 +51,14 @@ export default {
         },
 
     },
-    messageFocus: {
+    messageAndFocusWrapper: {
         color: "white",
         fontWeight: 500,
         "& .MuiFormControl-root": {
             margin: 0,
         },
     },
-    quote: {
+    quoteWrapper: {
         bottom: "10px",
         position: "fixed",
         left: "calc(-50vw + 50%)",
@@ -68,7 +68,7 @@ export default {
         maxWidth: "600px",
         padding: "10px 80px",
     },
-    toDo: {
+    toDoWrapper: {
         bottom: "30px",
         right: "30px",
         position: "fixed",
@@ -89,7 +89,8 @@ export default {
     button: {
         color: "white",
         "&:hover": {
-            backgroundColor: "rgba(0,0,0,0.3)",
+            color: "aquamarine",
+            transition: "color 0.3s ease-in"
         }
     },
     morning: {

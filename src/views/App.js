@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
-import Main from './Main';
-import FavoriteQuotes from './FavoriteQuotes';
+import DashboardView from './DashboardView/DashboardView';
+import FavoriteQuotesView from './FavoriteQuotesView/FavoriteQuotesView';
 import Page from './Page';
 import { Route, Switch } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -46,17 +46,17 @@ class App extends Component {
               <Switch location={location}>
                 <Route exact path="/" render={() =>
                   <Page>
-                    <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />
+                    <DashboardView addQuote={this.addQuote} removeQuote={this.removeQuote} />
                   </Page>
                 } />
                 <Route exact path="/favorite-quotes" render={(routeProps) =>
                   <Page>
-                    <FavoriteQuotes favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} onSortEnd={this.onSortEnd} {...routeProps} />}
+                    <FavoriteQuotesView favoriteQuotes={favoriteQuotes} removeQuote={this.removeQuote} onSortEnd={this.onSortEnd} {...routeProps} />}
               </Page>
                 } />
                 <Route render={() =>
                   <Page>
-                    <Main addQuote={this.addQuote} removeQuote={this.removeQuote} />
+                    <DashboardView addQuote={this.addQuote} removeQuote={this.removeQuote} />
                   </Page>
                 } />
               </Switch>

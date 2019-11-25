@@ -1,4 +1,4 @@
-import sizes from "./sizes";
+import sizes from "../../styles/sizes";
 
 export default {
     SortableQuoteBox: {

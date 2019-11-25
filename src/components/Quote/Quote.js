@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/QuoteStyles';
+import styles from './QuoteStyles';
 
 import { withStyles } from "@material-ui/core/styles";
 

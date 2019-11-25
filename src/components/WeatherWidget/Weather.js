@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/WeatherStyles';
+import styles from './WeatherStyles';
 
 import { withStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,7 +29,7 @@ const Weather = ({ classes, isEvening, city, country, showForm, temperature, id 
     }
 
     return (
-            <div>
+            <>
                 <h5 className={classes.text}>
                     {city.toUpperCase()} ({country.toUpperCase()})
                     <IconButton
@@ -47,7 +47,7 @@ const Weather = ({ classes, isEvening, city, country, showForm, temperature, id 
                     icon={isEvening ? icon(id)[1] : icon(id)[0]}
                 />
                 <h1 className={classes.text}>{temperature}&deg;C</h1>
-            </div>
+            </>
     )
 }
 

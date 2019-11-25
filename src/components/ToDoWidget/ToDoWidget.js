@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ToDoList from './ToDoList';
 import ToDoListMenu from './ToDoListMenu';
-import LoadingSpinner from './LoadingSpinner';
-import styles from './styles/ToDoWidgetStyles';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import styles from './ToDoWidgetStyles';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -58,7 +58,7 @@ class ToDoWidget extends Component {
         const { classes } = this.props;
         const { windowOpen, currentList, toDoLists, listLoading } = this.state;
         return (
-            <div>
+            <>
                 <TransitionGroup>
                     {windowOpen &&
                         <CSSTransition key={windowOpen} timeout={300} classNames="fade">
@@ -75,7 +75,7 @@ class ToDoWidget extends Component {
                 <Button className={classes.button} onClick={this.toggleWindow}>
                     TODO
                 </Button>
-            </div>
+            </>
         )
     }
 }

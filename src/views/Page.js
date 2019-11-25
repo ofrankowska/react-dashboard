@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/Page.css';
+import './Page.css';
 
 const Page = ({children}) => (
     <section className="page">{children}</section>
