@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Clock from "../../components/Clock/Clock";
-import Message from "../../Message";
-import Focus from "../../Focus";
+import Message from "../../components/Message/Message";
+import FocusWrapper from "../../components/FocusWrapper/FocusWrapper";
 import WeatherWidget from "../../components/WeatherWidget/WeatherWidget";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import QuoteWidget from "../../components/QuoteWidget/QuoteWidget";
@@ -86,7 +86,7 @@ class Main extends Component {
         </section>
         <section className={classes.messageAndFocusWrapper}>
           <Message isMorning={isMorning} isAfternoon={isAfternoon} />
-          <Focus />
+          <FocusWrapper />
         </section>
         <section className={classes.quoteWrapper}>
           <QuoteWidget addQuote={addQuote} removeQuote={removeQuote} />

@@ -1,36 +1,44 @@
-import React, { Component } from 'react';
-import styles from '../../styles/NewToDoFormStyles';
+import React, { Component } from "react";
+import styles from "./NewToDoFormStyles";
 
-import uuid from 'uuid/v4';
+import uuid from "uuid/v4";
 
 import { withStyles } from "@material-ui/core/styles";
 
 class NewToDoForm extends Component {
-    constructor(props){
-        super(props);
-        this.state = {task: ""}
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = { task: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.task) {
+      let isDoneList = this.props.listName === "done" ? true : false;
+      const newTask = { ...this.state, id: uuid(), checked: isDoneList };
+      this.props.add(newTask);
+      this.setState({ task: "" });
     }
-    handleChange(e){
-        this.setState({[e.target.name]: e.target.value})
-    }
-    handleSubmit(e){
-        e.preventDefault();
-        if (this.state.task){
-            let isDoneList = this.props.listName === "done" ? true : false;
-            const newTask = {...this.state, id: uuid(), checked: isDoneList};
-            this.props.add(newTask);
-            this.setState({task: ""});
-        }
-    }
-    render(){
-        return(
-            <form onSubmit={this.handleSubmit}>
-                <input className={this.props.classes.textInput} id="task" name="task" type="text" value={this.state.task} onChange={this.handleChange} placeholder="New to-do"/>
-            </form>
-        )
-    }
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          className={this.props.classes.textInput}
+          id="task"
+          name="task"
+          type="text"
+          value={this.state.task}
+          onChange={this.handleChange}
+          placeholder="New to-do"
+        />
+      </form>
+    );
+  }
 }
 
 export default withStyles(styles)(NewToDoForm);
