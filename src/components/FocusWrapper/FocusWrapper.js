@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import styles from "./FocusWrapperStyles";
+import React, { Component } from 'react';
 
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import FocusCheckbox from "./FocusCheckbox";
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import FocusCheckbox from './FocusCheckbox';
+
+import styles from './FocusWrapperStyles';
 
 class Focus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      focusName: "",
+      focusName: '',
       formIsShowing: true,
-      checked: false
+      checked: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateLocalStorage = this.updateLocalStorage.bind(this);
@@ -20,53 +21,60 @@ class Focus extends Component {
     this.handleCheck = this.handleCheck.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+
   componentDidMount() {
-    const focus = JSON.parse(window.localStorage.getItem("focus"));
+    const focus = JSON.parse(window.localStorage.getItem('focus'));
     if (focus && focus.focusName) {
       this.setState({
         focusName: focus.focusName,
         checked: focus.checked,
-        formIsShowing: false
+        formIsShowing: false,
       });
     }
   }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   updateLocalStorage() {
     const focus = {
       focusName: this.state.focusName,
-      checked: this.state.checked
+      checked: this.state.checked,
     };
-    window.localStorage.setItem("focus", JSON.stringify(focus));
+    window.localStorage.setItem('focus', JSON.stringify(focus));
   }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.focusName) {
       this.setState({ formIsShowing: false }, () => this.updateLocalStorage());
     }
   }
+
   handleCheck() {
     this.setState(
       st => ({ checked: !st.checked }),
-      () => this.updateLocalStorage()
+      () => this.updateLocalStorage(),
     );
   }
+
   handleClick() {
     this.setState(
       {
-        focusName: "",
+        focusName: '',
         formIsShowing: true,
-        checked: false
+        checked: false,
       },
-      () => this.updateLocalStorage()
+      () => this.updateLocalStorage(),
     );
   }
+
   render() {
     const { focusName, formIsShowing, checked } = this.state;
     const { classes } = this.props;
     const form = (
-      <form onSubmit={this.handleSubmit} style={{ display: "inline-block" }}>
+      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
         <TextField
           id="standard-basic"
           className={classNames(classes.textField, classes.focusField)}

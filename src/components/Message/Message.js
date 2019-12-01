@@ -1,59 +1,57 @@
-import React, { Component } from "react";
-import styles from "./MessageStyles";
+import React, { Component } from 'react';
 
-import TextField from "@material-ui/core/TextField";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import CreateIcon from "@material-ui/icons/Create";
-import { IconButton } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import CreateIcon from '@material-ui/icons/Create';
+import { IconButton } from '@material-ui/core';
+
+import styles from './MessageStyles';
 
 class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      formIsShowing: true
+      userName: '',
+      formIsShowing: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   componentDidMount() {
-    const userName = JSON.parse(window.localStorage.getItem("userName"));
+    const userName = JSON.parse(window.localStorage.getItem('userName'));
     if (userName) {
       this.setState({
         userName,
-        formIsShowing: false
+        formIsShowing: false,
       });
     }
   }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ formIsShowing: false });
-    window.localStorage.setItem(
-      "userName",
-      JSON.stringify(this.state.userName)
-    );
+    window.localStorage.setItem('userName', JSON.stringify(this.state.userName));
   }
+
   render() {
     const { isMorning, isAfternoon, classes } = this.props;
     const { userName, formIsShowing } = this.state;
-    const greeting = isMorning
-      ? "Good Morning"
-      : isAfternoon
-      ? "Good Afternoon"
-      : "Good Evening";
+    const greeting = isMorning ? 'Good Morning' : isAfternoon ? 'Good Afternoon' : 'Good Evening';
     const formDisplay = (
-      <form onSubmit={this.handleSubmit} style={{ display: "inline-block" }}>
+      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
         <TextField
           id="standard-basic"
           className={classNames(classes.textField, classes.userNameField)}
           label="what is your name?"
           margin="normal"
-          style={{ color: "white" }}
-          value={this.state.userName}
+          style={{ color: 'white' }}
+          value={userName}
           name="userName"
           onChange={this.handleChange}
           size="1"

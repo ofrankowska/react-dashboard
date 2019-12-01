@@ -1,37 +1,37 @@
-import React, { Component } from "react";
-import ToDoList from "./ToDoList";
-import ToDoListMenu from "./ToDoListMenu";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import MyButton from "../../components/MyButton/MyButton";
-import styles from "./ToDoWidgetStyles";
+import React, { Component } from 'react';
+import ToDoList from './ToDoList';
+import ToDoListMenu from './ToDoListMenu';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import MyButton from '../../components/MyButton/MyButton';
+import styles from './ToDoWidgetStyles';
 
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
 
 class ToDoWidget extends Component {
   constructor(props) {
     super(props);
     this.state = {
       windowOpen: false,
-      currentList: "today",
-      toDoLists: JSON.parse(window.localStorage.getItem("toDoLists")) || {
+      currentList: 'today',
+      toDoLists: JSON.parse(window.localStorage.getItem('toDoLists')) || {
         inbox: [],
         today: [],
-        done: []
+        done: [],
       },
-      listLoading: false
+      listLoading: false,
     };
-    this.toggleWindow = this.toggleWindow.bind(this);
     this.updateList = this.updateList.bind(this);
     this.changeList = this.changeList.bind(this);
     this.addToList = this.addToList.bind(this);
   }
+
   toggleWindow = () => this.setState(st => ({ windowOpen: !st.windowOpen }));
 
   changeList(newListName, oldListName) {
     this.setState({ listLoading: true });
-    if (oldListName === "inbox" || oldListName === "today") {
+    if (oldListName === 'inbox' || oldListName === 'today') {
       const toDoLists = this.state.toDoLists;
       let doneToDoList = toDoLists.done;
       let uncheckedToDos = [];
@@ -42,7 +42,7 @@ class ToDoWidget extends Component {
           doneToDoList.push(todo);
         }
       });
-      this.updateList("done", doneToDoList);
+      this.updateList('done', doneToDoList);
       this.updateList(oldListName, uncheckedToDos);
     }
     setTimeout(() => {
@@ -53,11 +53,8 @@ class ToDoWidget extends Component {
     this.setState(
       st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }),
       () => {
-        window.localStorage.setItem(
-          "toDoLists",
-          JSON.stringify(this.state.toDoLists)
-        );
-      }
+        window.localStorage.setItem('toDoLists', JSON.stringify(this.state.toDoLists));
+      },
     );
   }
   addToList(listName, todo) {
