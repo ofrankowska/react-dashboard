@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -54,6 +54,16 @@ const Weather = ({ classes, isEvening, city, country, showForm, temperature, id 
       <h1 className={classes.text}>{temperature}&deg;C</h1>
     </>
   );
+};
+
+Weather.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  isEvening: PropTypes.bool.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  showForm: PropTypes.func.isRequired,
+  temperature: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(Weather);

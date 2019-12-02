@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
 import { withStyles } from '@material-ui/core/styles';
-
 import ToDoList from './ToDoList';
 import ToDoListMenu from './ToDoListMenu';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -101,5 +100,9 @@ class ToDoWidget extends Component {
     );
   }
 }
+
+ToDoWidget.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default withStyles(styles)(ToDoWidget);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -14,7 +15,7 @@ import ToDoWidget from '../../components/ToDoWidget/ToDoWidget';
 import MyButton from '../../components/MyButton/MyButton';
 import styles from './DashboardViewStyles';
 
-class Main extends Component {
+class DashboardView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,4 +98,10 @@ class Main extends Component {
   }
 }
 
-export default withStyles(styles)(Main);
+DashboardView.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  addQuote: PropTypes.func.isRequired,
+  removeQuote: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(DashboardView);

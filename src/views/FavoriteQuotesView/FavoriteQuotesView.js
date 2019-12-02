@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
@@ -103,5 +103,15 @@ class FavoriteQuotesView extends Component {
     );
   }
 }
+
+FavoriteQuotesView.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  removeQuote: PropTypes.func.isRequired,
+  onSortEnd: PropTypes.func.isRequired,
+  favoriteQuotes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default withStyles(styles)(FavoriteQuotesView);

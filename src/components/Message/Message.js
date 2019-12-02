@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
@@ -86,5 +87,11 @@ class Message extends Component {
     );
   }
 }
+
+Message.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  isMorning: PropTypes.bool.isRequired,
+  isAfternoon: PropTypes.bool.isRequired,
+};
 
 export default withStyles(styles)(Message);

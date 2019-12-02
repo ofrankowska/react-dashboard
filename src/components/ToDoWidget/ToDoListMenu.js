@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './ToDoListMenuStyles';
-
 
 const ToDoListMenu = ({ currentList, changeList, toDoLists, classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -59,6 +59,17 @@ const ToDoListMenu = ({ currentList, changeList, toDoLists, classes }) => {
       </Menu>
     </>
   );
+};
+
+ToDoListMenu.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  currentList: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
+  toDoLists: PropTypes.shape({
+    inbox: PropTypes.arrayOf(PropTypes.string),
+    today: PropTypes.arrayOf(PropTypes.string),
+    done: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  changeList: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ToDoListMenu);

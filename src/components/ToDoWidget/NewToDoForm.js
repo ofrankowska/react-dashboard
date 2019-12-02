@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
-
 import { withStyles } from '@material-ui/core/styles';
 import styles from './NewToDoFormStyles';
 
@@ -46,5 +45,11 @@ class NewToDoForm extends Component {
     );
   }
 }
+
+NewToDoForm.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  listName: PropTypes.string.isRequired,
+  add: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(NewToDoForm);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
@@ -48,4 +49,15 @@ const FocusCheckbox = ({ classes, checked, focusName, handleClick, handleCheck }
   );
 };
 
+FocusCheckbox.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  checked: PropTypes.bool.isRequired,
+  focusName: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+  handleCheck: PropTypes.func.isRequired,
+};
+
+FocusCheckbox.defaultProps = {
+  focusName: '',
+};
 export default withStyles(styles)(FocusCheckbox);

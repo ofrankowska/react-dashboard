@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-
+import PropTypes from 'prop-types';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -47,8 +47,9 @@ class QuoteWidget extends PureComponent {
 
   removeFromFavorites = () => {
     const { removeQuote } = this.props;
+    const { id } = this.state;
     this.setState({ favorite: false });
-    removeQuote(this.state.id);
+    removeQuote(id);
   };
 
   render() {
@@ -99,5 +100,11 @@ class QuoteWidget extends PureComponent {
     );
   }
 }
+
+QuoteWidget.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  addQuote: PropTypes.func.isRequired,
+  removeQuote: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(QuoteWidget);

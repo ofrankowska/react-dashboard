@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Weather from './Weather';
@@ -15,8 +16,8 @@ class WeatherWidget extends PureComponent {
       city: '',
       country: '',
       formShowing: false,
-      temperature: '',
-      id: '',
+      temperature: 0,
+      id: 0,
       weatherLoading: false,
     };
     this.getData = this.getData.bind(this);
@@ -108,5 +109,9 @@ class WeatherWidget extends PureComponent {
     );
   }
 }
+
+WeatherWidget.propTypes = {
+  isEvening: PropTypes.bool.isRequired,
+};
 
 export default WeatherWidget;

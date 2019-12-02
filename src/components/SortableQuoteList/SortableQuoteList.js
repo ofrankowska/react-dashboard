@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
+import PropTypes from 'prop-types';
 import { SortableContainer } from 'react-sortable-hoc';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import SortableQuoteBox from './SortableQuoteBox';
@@ -20,5 +20,11 @@ function SortableQuoteList(props) {
     </section>
   );
 }
+
+SortableQuoteList.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  openDialog: PropTypes.func.isRequired,
+  favoriteQuotes: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default SortableContainer(withStyles(styles)(SortableQuoteList));

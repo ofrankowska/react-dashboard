@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -7,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import styles from './NavigationStyles';
 
-import MyButton from "../MyButton/MyButton";
+import MyButton from '../MyButton/MyButton';
 
 class Navigation extends Component {
   constructor(props) {
@@ -37,5 +38,13 @@ class Navigation extends Component {
     );
   }
 }
+
+Navigation.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  title: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default withStyles(styles)(Navigation);

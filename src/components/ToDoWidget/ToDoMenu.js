@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './ToDoMenuStyles';
 
-import MyButton from "../MyButton/MyButton";
+import MyButton from '../MyButton/MyButton';
 
 const ToDoMenu = ({ edit, remove, listName, listNames, moveToList, classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -53,6 +53,15 @@ const ToDoMenu = ({ edit, remove, listName, listNames, moveToList, classes }) =>
       </Menu>
     </>
   );
+};
+
+ToDoMenu.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  listName: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
+  listNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  moveToList: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ToDoMenu);

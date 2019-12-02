@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import NewToDoForm from './NewToDoForm';
 import ToDo from './ToDo';
@@ -80,6 +81,14 @@ const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
       <NewToDoForm add={addToDo} listName={listName} />
     </div>
   );
+};
+
+ToDoList.propTypes = {
+  listName: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
+  listNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toDoList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateList: PropTypes.func.isRequired,
+  addToList: PropTypes.func.isRequired,
 };
 
 export default ToDoList;
