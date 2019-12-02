@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import Clock from "../../components/Clock/Clock";
-import Message from "../../components/Message/Message";
-import FocusWrapper from "../../components/FocusWrapper/FocusWrapper";
-import WeatherWidget from "../../components/WeatherWidget/WeatherWidget";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import QuoteWidget from "../../components/QuoteWidget/QuoteWidget";
-import ToDoWidget from "../../components/ToDoWidget/ToDoWidget";
-import MyButton from "../../components/MyButton/MyButton";
-import { Link } from "react-router-dom";
-import styles from "./DashboardViewStyles";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { withStyles } from '@material-ui/core/styles';
 
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import Clock from '../../components/Clock/Clock';
+import Message from '../../components/Message/Message';
+import FocusWrapper from '../../components/FocusWrapper/FocusWrapper';
+import WeatherWidget from '../../components/WeatherWidget/WeatherWidget';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import QuoteWidget from '../../components/QuoteWidget/QuoteWidget';
+import ToDoWidget from '../../components/ToDoWidget/ToDoWidget';
+import MyButton from '../../components/MyButton/MyButton';
+import styles from './DashboardViewStyles';
 
 class Main extends Component {
   constructor(props) {
@@ -23,10 +23,11 @@ class Main extends Component {
       isMorning: this.setHour() >= 6 && this.setHour() < 12,
       isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
       isEvening: this.setHour() >= 18 || this.setHour() < 6,
-      componentLoading: true
+      componentLoading: true,
     };
     this._isMounted = false;
   }
+
   componentDidMount() {
     this._isMounted = true;
     setTimeout(() => this.setState({ componentLoading: false }), 900);
@@ -38,37 +39,34 @@ class Main extends Component {
           min: this.setMinute(),
           isMorning: this.setHour() >= 6 && this.setHour() < 12,
           isAfternoon: this.setHour() >= 12 && this.setHour() < 18,
-          isEvening: this.setHour() >= 18 || this.setHour() < 6
+          isEvening: this.setHour() >= 18 || this.setHour() < 6,
         });
       }
     }, 1000);
   }
+
   componentWillUnmount() {
     this._isMounted = false;
   }
+
   setHour = () => new Date().getHours();
+
   setMinute = () => new Date().getMinutes();
+
   render() {
-    const {
-      hour,
-      min,
-      isMorning,
-      isAfternoon,
-      isEvening,
-      componentLoading
-    } = this.state;
+    const { hour, min, isMorning, isAfternoon, isEvening, componentLoading } = this.state;
     const { classes, addQuote, removeQuote } = this.props;
     return (
       <div
         className={classNames(classes.root, {
           [classes.morning]: isMorning,
           [classes.afternoon]: isAfternoon,
-          [classes.evening]: isEvening
+          [classes.evening]: isEvening,
         })}
       >
         <nav className={classes.nav}>
           <Link to="/favorite-quotes">
-            <MyButton withBackground>
+            <MyButton as={Link} to="/favorite-quotes" withbackground>
               <FavoriteIcon fontSize="small" /> Quotes
             </MyButton>
           </Link>

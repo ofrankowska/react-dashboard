@@ -1,37 +1,22 @@
-import React from "react";
-import styles from "./FocusCheckboxStyles";
+import React from 'react';
 
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import AddIcon from "@material-ui/icons/Add";
-import ClearIcon from "@material-ui/icons/Clear";
-import { IconButton } from "@material-ui/core";
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import AddIcon from '@material-ui/icons/Add';
+import ClearIcon from '@material-ui/icons/Clear';
+import { IconButton } from '@material-ui/core';
+import styles from './FocusCheckboxStyles';
 
-const FocusCheckbox = ({
-  classes,
-  checked,
-  focusName,
-  handleClick,
-  handleCheck
-}) => {
+const FocusCheckbox = ({ classes, checked, focusName, handleClick, handleCheck }) => {
   const clearBtn = (
-    <IconButton
-      color="inherit"
-      aria-label="Remove current focus"
-      onClick={handleClick}
-      className={classes.cleatBtn}
-    >
+    <IconButton color="inherit" aria-label="Remove current focus" onClick={handleClick}>
       <ClearIcon />
     </IconButton>
   );
   const addBtn = (
-    <IconButton
-      color="inherit"
-      aria-label="Add new focus"
-      onClick={handleClick}
-    >
+    <IconButton color="inherit" aria-label="Add new focus" onClick={handleClick}>
       <AddIcon />
     </IconButton>
   );
@@ -54,7 +39,7 @@ const FocusCheckbox = ({
       {checked ? addBtn : clearBtn}
       <p
         className={classNames(classes.helperText, {
-          [classes.showHelperText]: checked
+          [classes.showHelperText]: checked,
         })}
       >
         Great work!

@@ -15,11 +15,6 @@ class Focus extends Component {
       formIsShowing: true,
       checked: false,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.updateLocalStorage = this.updateLocalStorage.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCheck = this.handleCheck.bind(this);
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -33,33 +28,35 @@ class Focus extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
-  updateLocalStorage() {
+  updateLocalStorage = () => {
+    const { focusName, checked } = this.state;
     const focus = {
-      focusName: this.state.focusName,
-      checked: this.state.checked,
+      focusName,
+      checked,
     };
     window.localStorage.setItem('focus', JSON.stringify(focus));
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
+    const { focusName } = this.state;
     e.preventDefault();
-    if (this.state.focusName) {
+    if (focusName) {
       this.setState({ formIsShowing: false }, () => this.updateLocalStorage());
     }
-  }
+  };
 
-  handleCheck() {
+  handleCheck = () => {
     this.setState(
       st => ({ checked: !st.checked }),
       () => this.updateLocalStorage(),
     );
-  }
+  };
 
-  handleClick() {
+  handleClick = () => {
     this.setState(
       {
         focusName: '',
@@ -68,7 +65,7 @@ class Focus extends Component {
       },
       () => this.updateLocalStorage(),
     );
-  }
+  };
 
   render() {
     const { focusName, formIsShowing, checked } = this.state;

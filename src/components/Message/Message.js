@@ -11,38 +11,45 @@ import styles from './MessageStyles';
 class Message extends Component {
   constructor(props) {
     super(props);
+    const userName = JSON.parse(window.localStorage.getItem('userName'));
     this.state = {
-      userName: '',
+      userName: userName || '',
       formIsShowing: true,
+      greeting: this.greeting(),
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    const userName = JSON.parse(window.localStorage.getItem('userName'));
+    const { userName } = this.state;
     if (userName) {
       this.setState({
-        userName,
         formIsShowing: false,
       });
     }
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  greeting = () => {
+    const { isMorning, isAfternoon } = this.props;
+    if (isMorning) return 'Good Morning';
+    if (isAfternoon) return 'Good Afternoon';
+    return 'Good evening';
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
+    const { userName } = this.state;
     e.preventDefault();
     this.setState({ formIsShowing: false });
-    window.localStorage.setItem('userName', JSON.stringify(this.state.userName));
-  }
+    window.localStorage.setItem('userName', JSON.stringify(userName));
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
-    const { isMorning, isAfternoon, classes } = this.props;
-    const { userName, formIsShowing } = this.state;
-    const greeting = isMorning ? 'Good Morning' : isAfternoon ? 'Good Afternoon' : 'Good Evening';
+    const { userName, formIsShowing, greeting } = this.state;
+    const { classes } = this.props;
+
     const formDisplay = (
       <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
         <TextField

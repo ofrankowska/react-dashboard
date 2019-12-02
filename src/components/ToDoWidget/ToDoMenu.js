@@ -1,22 +1,15 @@
-import React from "react";
-import styles from "./ToDoMenuStyles";
+import React from 'react';
 
-import MyButton from "../../components/MyButton/MyButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './ToDoMenuStyles';
 
-import { withStyles } from "@material-ui/core/styles";
+import MyButton from "../MyButton/MyButton";
 
-const ToDoMenu = ({
-  edit,
-  remove,
-  listName,
-  listNames,
-  moveToList,
-  classes
-}) => {
+const ToDoMenu = ({ edit, remove, listName, listNames, moveToList, classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   // 1. the piece of state
   // 2. function to update that piece of state
@@ -33,11 +26,7 @@ const ToDoMenu = ({
 
   return (
     <>
-      <MyButton
-        aria-controls="todo-list-menu"
-        aria-haspopup="true"
-        onClick={handleOpen}
-      >
+      <MyButton aria-controls="todo-list-menu" aria-haspopup="true" onClick={handleOpen}>
         <FontAwesomeIcon icon={faEllipsisH} />
       </MyButton>
       <Menu
@@ -53,11 +42,7 @@ const ToDoMenu = ({
         </MenuItem>
         <hr />
         {otherListNames.map(name => (
-          <MenuItem
-            className={classes.menuItem}
-            onClick={() => moveToList(name)}
-            key={name}
-          >
+          <MenuItem className={classes.menuItem} onClick={() => moveToList(name)} key={name}>
             Move to {name.charAt(0).toUpperCase() + name.slice(1)}
           </MenuItem>
         ))}

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import ToDoList from './ToDoList';
-import ToDoListMenu from './ToDoListMenu';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import MyButton from '../../components/MyButton/MyButton';
-import styles from './ToDoWidgetStyles';
-
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { withStyles } from '@material-ui/core/styles';
+
+import ToDoList from './ToDoList';
+import ToDoListMenu from './ToDoListMenu';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import MyButton from '../MyButton/MyButton';
+import styles from './ToDoWidgetStyles';
 
 class ToDoWidget extends Component {
   constructor(props) {
@@ -32,9 +32,9 @@ class ToDoWidget extends Component {
   changeList(newListName, oldListName) {
     this.setState({ listLoading: true });
     if (oldListName === 'inbox' || oldListName === 'today') {
-      const toDoLists = this.state.toDoLists;
-      let doneToDoList = toDoLists.done;
-      let uncheckedToDos = [];
+      const { toDoLists } = this.state;
+      const doneToDoList = toDoLists.done;
+      const uncheckedToDos = [];
       toDoLists[oldListName].forEach(todo => {
         if (todo.checked === false) {
           uncheckedToDos.push(todo);
@@ -49,17 +49,22 @@ class ToDoWidget extends Component {
       this.setState({ currentList: newListName, listLoading: false });
     }, 400);
   }
+
   updateList(listName, updatedList) {
     this.setState(
       st => ({ toDoLists: { ...st.toDoLists, [listName]: updatedList } }),
       () => {
-        window.localStorage.setItem('toDoLists', JSON.stringify(this.state.toDoLists));
+        const { toDoLists } = this.state;
+        window.localStorage.setItem('toDoLists', JSON.stringify(toDoLists));
       },
     );
   }
+
   addToList(listName, todo) {
-    this.updateList(listName, [...this.state.toDoLists[listName], todo]);
+    const { toDoLists } = this.state;
+    this.updateList(listName, [...toDoLists[listName], todo]);
   }
+
   render() {
     const { classes } = this.props;
     const { windowOpen, currentList, toDoLists, listLoading } = this.state;
@@ -89,7 +94,7 @@ class ToDoWidget extends Component {
             </CSSTransition>
           )}
         </TransitionGroup>
-        <MyButton withBackground onClick={this.toggleWindow}>
+        <MyButton withbackground onClick={this.toggleWindow}>
           ToDo
         </MyButton>
       </>

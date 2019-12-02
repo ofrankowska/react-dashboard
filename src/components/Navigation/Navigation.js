@@ -1,21 +1,25 @@
-import React, { Component } from "react";
-import MyButton from "../../components/MyButton/MyButton";
-import styles from "./NavigationStyles";
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import styles from './NavigationStyles';
+
+import MyButton from "../MyButton/MyButton";
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
   }
-  goBack() {
-    this.props.history.push("/");
-  }
+
+  goBack = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
   render() {
     const { title, classes } = this.props;
     return (
