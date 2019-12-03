@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import Weather from './Weather';
-import WeatherMetaForm from './WeatherMetaForm';
+import Weather from './Weather/Weather';
+import WeatherMetaForm from './WeatherMetaForm/WeatherMetaForm';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const WEATHER_API_KEY = '3190d1d029a812e6a5365798e442ad0b';

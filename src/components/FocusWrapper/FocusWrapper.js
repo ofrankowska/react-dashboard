@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import FocusCheckbox from './FocusCheckbox';
+import MyTextField from '../MyTextField/MyTextField';
+import FocusCheckbox from './FocusCheckbox/FocusCheckbox';
 
 import styles from './FocusWrapperStyles';
 
-class Focus extends Component {
+class FocusWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,9 +72,8 @@ class Focus extends Component {
     const { classes } = this.props;
     const form = (
       <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
-        <TextField
+        <MyTextField
           id="standard-basic"
-          className={classNames(classes.textField, classes.focusField)}
           label="What is your focus for today?"
           margin="normal"
           value={focusName}
@@ -100,4 +99,8 @@ class Focus extends Component {
   }
 }
 
-export default withStyles(styles)(Focus);
+FocusWrapper.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+export default withStyles(styles)(FocusWrapper);

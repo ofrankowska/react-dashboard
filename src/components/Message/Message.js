@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import CreateIcon from '@material-ui/icons/Create';
 import { IconButton } from '@material-ui/core';
-
 import styles from './MessageStyles';
+import MyTextField from '../MyTextField/MyTextField';
 
 class Message extends Component {
   constructor(props) {
@@ -53,16 +51,16 @@ class Message extends Component {
 
     const formDisplay = (
       <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
-        <TextField
+        <MyTextField
           id="standard-basic"
-          className={classNames(classes.textField, classes.userNameField)}
+          className={classNames(classes.textField)}
           label="what is your name?"
           margin="normal"
           style={{ color: 'white' }}
           value={userName}
           name="userName"
           onChange={this.handleChange}
-          size="1"
+          big="true"
         />
       </form>
     );

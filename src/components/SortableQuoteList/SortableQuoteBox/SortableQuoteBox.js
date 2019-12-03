@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { SortableElement } from 'react-sortable-hoc';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import Quote from '../Quote/Quote';
+import Quote from '../../Quote/Quote';
 import styles from './SortableQuoteBoxStyles';
 
 const SortableQuoteBox = ({ text, author, id, openDialog, classes }) => {

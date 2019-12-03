@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { SortableContainer } from 'react-sortable-hoc';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import SortableQuoteBox from './SortableQuoteBox';
+import SortableQuoteBox from './SortableQuoteBox/SortableQuoteBox';
 import styles from './SortableQuoteListStyles';
 
 function SortableQuoteList(props) {

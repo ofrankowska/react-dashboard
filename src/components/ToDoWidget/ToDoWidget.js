@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { withStyles } from '@material-ui/core/styles';
-import ToDoList from './ToDoList';
-import ToDoListMenu from './ToDoListMenu';
+import ToDoList from './ToDoList/ToDoList';
+import ToDoListMenu from './ToDoListMenu/ToDoListMenu';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MyButton from '../MyButton/MyButton';
 import styles from './ToDoWidgetStyles';
@@ -93,7 +93,7 @@ class ToDoWidget extends Component {
             </CSSTransition>
           )}
         </TransitionGroup>
-        <MyButton withbackground onClick={this.toggleWindow}>
+        <MyButton withbackground="true" onClick={this.toggleWindow}>
           ToDo
         </MyButton>
       </>

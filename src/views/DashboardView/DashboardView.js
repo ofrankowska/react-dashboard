@@ -67,7 +67,7 @@ class DashboardView extends Component {
       >
         <nav className={classes.nav}>
           <Link to="/favorite-quotes">
-            <MyButton as={Link} to="/favorite-quotes" withbackground>
+            <MyButton as={Link} to="/favorite-quotes" withbackground="true">
               <FavoriteIcon fontSize="small" /> Quotes
             </MyButton>
           </Link>

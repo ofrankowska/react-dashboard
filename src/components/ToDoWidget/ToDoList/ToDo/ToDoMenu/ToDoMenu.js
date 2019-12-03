@@ -7,7 +7,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './ToDoMenuStyles';
 
-import MyButton from '../MyButton/MyButton';
+import MyButton from '../../../../MyButton/MyButton';
 
 const ToDoMenu = ({ edit, remove, listName, listNames, moveToList, classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);

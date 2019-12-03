@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import NewToDoForm from './NewToDoForm';
-import ToDo from './ToDo';
+import NewToDoForm from './NewToDoForm/NewToDoForm';
+import ToDo from './ToDo/ToDo';
 
 const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
   const addToDo = newTask => {
@@ -86,7 +86,13 @@ const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
 ToDoList.propTypes = {
   listName: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
   listNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  toDoList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toDoList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,
+      checked: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
   updateList: PropTypes.func.isRequired,
   addToList: PropTypes.func.isRequired,
 };

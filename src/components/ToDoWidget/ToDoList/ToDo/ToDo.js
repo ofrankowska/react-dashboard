@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import ToDoMenu from './ToDoMenu';
+import ToDoMenu from './ToDoMenu/ToDoMenu';
 import styles from './ToDoStyles';
 
 class ToDo extends Component {
@@ -94,7 +94,6 @@ class ToDo extends Component {
 
 ToDo.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  checked: PropTypes.bool.isRequired,
   listName: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
   listNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   moveToList: PropTypes.func.isRequired,
@@ -103,6 +102,7 @@ ToDo.propTypes = {
   update: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(ToDo);
