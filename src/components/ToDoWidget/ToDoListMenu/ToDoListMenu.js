@@ -65,9 +65,9 @@ ToDoListMenu.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   currentList: PropTypes.oneOf(['inbox', 'today', 'done']).isRequired,
   toDoLists: PropTypes.shape({
-    inbox: PropTypes.arrayOf(PropTypes.string),
-    today: PropTypes.arrayOf(PropTypes.string),
-    done: PropTypes.arrayOf(PropTypes.string),
+    inbox: PropTypes.arrayOf(PropTypes.object),
+    today: PropTypes.arrayOf(PropTypes.object),
+    done: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   changeList: PropTypes.func.isRequired,
 };

@@ -32,24 +32,23 @@ class WeatherWidget extends PureComponent {
 
   async getData() {
     const { city, country } = this.state;
-    try {
-      const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
-      const data = await res.json();
-      this.setState(
-        {
+    if (city)
+      try {
+        const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
+        const data = await res.json();
+        this.setState({
           city,
           country,
           temperature: this.toCelcius(data.main.temp),
           id: data.weather[0].id,
-        },
-        () => this.setState({ weatherLoading: false }),
-      );
-    } catch (error) {
-      this.setState({ country: '', city: '' });
-    }
+          weatherLoading: false,
+        });
+      } catch (error) {
+        this.setState({ country: '', city: '' });
+      }
   }
 
-  toCelcius = celvin => Math.round((celvin - 273.15) * 10) / 10;
+  toCelcius = kelvin => Math.round(kelvin - 273.15);
 
   updateLocation = (city, country) => {
     this.setState({ city, country, weatherLoading: true }, () => this.getData());
@@ -68,10 +67,10 @@ class WeatherWidget extends PureComponent {
     });
   };
 
-  async locationExists(city, country) {
+  locationExists = async (city, country) => {
     const res = await fetch(`${WEATHER_API_BASE}${city},${country}&appid=${WEATHER_API_KEY}`);
     return res.status !== 404;
-  }
+  };
 
   render() {
     const { country, city, formShowing, temperature, id, weatherLoading } = this.state;
@@ -87,12 +86,12 @@ class WeatherWidget extends PureComponent {
       />
     );
     const addLocationBtn = (
-      <>
+      <div>
         <h5>WEATHER</h5>
         <IconButton color="inherit" aria-label="Edit weather location" onClick={this.showForm}>
           <AddCircleOutlineIcon fontSize="large" />
         </IconButton>
-      </>
+      </div>
     );
     return (
       <>

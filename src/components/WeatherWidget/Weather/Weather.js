@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSun,
@@ -17,17 +18,18 @@ import { IconButton } from '@material-ui/core';
 import classNames from 'classnames';
 import styles from './WeatherStyles';
 
+const WEATHER_ICONS = {
+  thunderstorm: [faBolt, faBolt],
+  drizzle: [faCloudSunRain, faCloudMoonRain],
+  rain: [faCloudSunRain, faCloudMoonRain],
+  snow: [faSnowflake, faSnowflake],
+  atmosphere: [faSmog, faSmog],
+  clear: [faSun, faMoon],
+  clouds: [faCloud, faCloud],
+};
+
 const Weather = ({ classes, isEvening, city, country, showForm, temperature, id }) => {
   const icon = () => {
-    const WEATHER_ICONS = {
-      thunderstorm: [faBolt, faBolt],
-      drizzle: [faCloudSunRain, faCloudMoonRain],
-      rain: [faCloudSunRain, faCloudMoonRain],
-      snow: [faSnowflake, faSnowflake],
-      atmosphere: [faSmog, faSmog],
-      clear: [faSun, faMoon],
-      clouds: [faCloud, faCloud],
-    };
     if (id <= 232) return WEATHER_ICONS.thunderstorm;
     if (id <= 321) return WEATHER_ICONS.drizzle;
     if (id <= 531) return WEATHER_ICONS.rain;
@@ -38,21 +40,27 @@ const Weather = ({ classes, isEvening, city, country, showForm, temperature, id 
   };
 
   return (
-    <>
-      <h5 className={classes.text}>
-        {city.toUpperCase()} ({country.toUpperCase()})
-        <IconButton
-          color="inherit"
-          aria-label="Change city weather"
-          onClick={showForm}
-          className={classNames(classes.editBtn)}
-        >
-          <CreateIcon />
-        </IconButton>
-      </h5>
-      <FontAwesomeIcon className={classes.icon} icon={isEvening ? icon()[1] : icon()[0]} />
-      <h1 className={classes.text}>{temperature}&deg;C</h1>
-    </>
+    <Grid container direction="column" justify="center">
+      <Grid item>
+        <h5 className={classes.text}>
+          {city.toUpperCase()} ({country.toUpperCase()})
+          <IconButton
+            color="inherit"
+            aria-label="Change city weather"
+            onClick={showForm}
+            className={classNames(classes.editBtn)}
+          >
+            <CreateIcon />
+          </IconButton>
+        </h5>
+      </Grid>
+      <Grid item>
+        <FontAwesomeIcon className={classes.icon} icon={isEvening ? icon()[1] : icon()[0]} />
+      </Grid>
+      <Grid item>
+        <h1 className={classes.text}>{temperature}&deg;C</h1>
+      </Grid>
+    </Grid>
   );
 };
 

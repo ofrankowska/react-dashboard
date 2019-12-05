@@ -6,7 +6,8 @@
   },
   "globals": {
     "document": true,
-    "window": true
+    "window": true,
+    "fetch": true
   },
   "rules": {
     "react/jsx-filename-extension": [
