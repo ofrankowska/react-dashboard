@@ -39,7 +39,7 @@ class WeatherMetaForm extends Component {
     });
   };
 
-  async handleSubmit(e) {
+  async handleSubmit() {
     const { city, countryCode } = this.state;
     const { locationExists, updateLocation } = this.props;
     if (await locationExists(city, countryCode)) {

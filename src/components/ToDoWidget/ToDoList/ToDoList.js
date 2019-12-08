@@ -24,7 +24,7 @@ const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
   };
 
   const moveToList = (newListName, id) => {
-    let todo = toDoList.find(todo => todo.id === id);
+    let todo = toDoList.find(item => item.id === id);
     if (newListName === 'done' || listName === 'done') {
       todo = { ...todo, checked: !todo.checked };
     }
@@ -49,8 +49,10 @@ const ToDoList = ({ toDoList, listName, listNames, updateList, addToList }) => {
   const todos = toDoList.map(todo => (
     <CSSTransition key={todo.id} timeout={300} classNames="fade">
       <ToDo
-        {...todo}
         key={todo.id}
+        id={todo.id}
+        task={todo.task}
+        checked={todo.checked}
         update={updateTask}
         toggle={toggleChecked}
         remove={removeTask}

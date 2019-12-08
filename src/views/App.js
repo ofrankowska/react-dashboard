@@ -68,7 +68,7 @@ class App extends Component {
                           favoriteQuotes={favoriteQuotes}
                           removeQuote={this.removeQuote}
                           onSortEnd={this.onSortEnd}
-                          {...routeProps}
+                          history={routeProps.history}
                         />
                       </Page>
                     )}
