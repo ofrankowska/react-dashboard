@@ -92,6 +92,14 @@ class QuoteWidget extends PureComponent {
   render() {
     const { author, text, id, favorite } = this.state;
     const { classes } = this.props;
+    const nextBtn = (
+      <IconButton
+        color="inherit"
+        aria-label="Add city weather"
+        onClick={this.getRandomQuote}
+        className={classes.icon}
+      >
+        <KeyboardArrowDownIcon fontSize="large" />
       </IconButton>
     );
     const favoriteBorderBtn = (
