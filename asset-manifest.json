@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-dashbaord/static/css/main.511356c3.chunk.css",
+    "main.js": "/react-dashbaord/static/js/main.7636cffb.chunk.js",
+    "main.js.map": "/react-dashbaord/static/js/main.7636cffb.chunk.js.map",
+    "runtime-main.js": "/react-dashbaord/static/js/runtime-main.a2baf6e8.js",
+    "runtime-main.js.map": "/react-dashbaord/static/js/runtime-main.a2baf6e8.js.map",
+    "static/js/2.e147d18d.chunk.js": "/react-dashbaord/static/js/2.e147d18d.chunk.js",
+    "static/js/2.e147d18d.chunk.js.map": "/react-dashbaord/static/js/2.e147d18d.chunk.js.map",
+    "index.html": "/react-dashbaord/index.html",
+    "precache-manifest.986bf27c376b532df3f13ceb42f330ca.js": "/react-dashbaord/precache-manifest.986bf27c376b532df3f13ceb42f330ca.js",
+    "service-worker.js": "/react-dashbaord/service-worker.js",
+    "static/css/main.511356c3.chunk.css.map": "/react-dashbaord/static/css/main.511356c3.chunk.css.map",
+    "static/js/2.e147d18d.chunk.js.LICENSE": "/react-dashbaord/static/js/2.e147d18d.chunk.js.LICENSE",
+    "static/media/afternoon.jpg": "/react-dashbaord/static/media/afternoon.59fcbcec.jpg",
+    "static/media/evening.jpg": "/react-dashbaord/static/media/evening.57ba52fb.jpg",
+    "static/media/morning.jpg": "/react-dashbaord/static/media/morning.e9572e42.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2baf6e8.js",
+    "static/js/2.e147d18d.chunk.js",
+    "static/css/main.511356c3.chunk.css",
+    "static/js/main.7636cffb.chunk.js"
+  ]
+}
