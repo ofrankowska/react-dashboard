@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3e497971a15bc14df721bc04d0d991bc",
+    "revision": "bc0867a3188bc82d88d0a80516a3295d",
     "url": "/react-dashbaord/index.html"
   },
   {
-    "revision": "2fd91694689a493ce1b6",
-    "url": "/react-dashbaord/static/css/main.511356c3.chunk.css"
+    "revision": "e9c7fb04cc69cc95b977",
+    "url": "/react-dashbaord/static/css/main.ae476eaf.chunk.css"
   },
   {
     "revision": "e06de2f251426f21f8ad",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-dashbaord/static/js/2.e147d18d.chunk.js.LICENSE"
   },
   {
-    "revision": "2fd91694689a493ce1b6",
+    "revision": "e9c7fb04cc69cc95b977",
     "url": "/react-dashbaord/static/js/main.7636cffb.chunk.js"
   },
   {

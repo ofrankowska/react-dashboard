@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/react-dashbaord/static/css/main.511356c3.chunk.css",
+    "main.css": "/react-dashbaord/static/css/main.ae476eaf.chunk.css",
     "main.js": "/react-dashbaord/static/js/main.7636cffb.chunk.js",
     "main.js.map": "/react-dashbaord/static/js/main.7636cffb.chunk.js.map",
     "runtime-main.js": "/react-dashbaord/static/js/runtime-main.a2baf6e8.js",
@@ -8,9 +8,9 @@
     "static/js/2.e147d18d.chunk.js": "/react-dashbaord/static/js/2.e147d18d.chunk.js",
     "static/js/2.e147d18d.chunk.js.map": "/react-dashbaord/static/js/2.e147d18d.chunk.js.map",
     "index.html": "/react-dashbaord/index.html",
-    "precache-manifest.986bf27c376b532df3f13ceb42f330ca.js": "/react-dashbaord/precache-manifest.986bf27c376b532df3f13ceb42f330ca.js",
+    "precache-manifest.e1abd1e56690a02228a1ea1fecd08767.js": "/react-dashbaord/precache-manifest.e1abd1e56690a02228a1ea1fecd08767.js",
     "service-worker.js": "/react-dashbaord/service-worker.js",
-    "static/css/main.511356c3.chunk.css.map": "/react-dashbaord/static/css/main.511356c3.chunk.css.map",
+    "static/css/main.ae476eaf.chunk.css.map": "/react-dashbaord/static/css/main.ae476eaf.chunk.css.map",
     "static/js/2.e147d18d.chunk.js.LICENSE": "/react-dashbaord/static/js/2.e147d18d.chunk.js.LICENSE",
     "static/media/afternoon.jpg": "/react-dashbaord/static/media/afternoon.59fcbcec.jpg",
     "static/media/evening.jpg": "/react-dashbaord/static/media/evening.57ba52fb.jpg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.a2baf6e8.js",
     "static/js/2.e147d18d.chunk.js",
-    "static/css/main.511356c3.chunk.css",
+    "static/css/main.ae476eaf.chunk.css",
     "static/js/main.7636cffb.chunk.js"
   ]
 }
