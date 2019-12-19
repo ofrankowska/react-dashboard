@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MyTextField from '../MyTextField/MyTextField';
 import FocusCheckbox from './FocusCheckbox/FocusCheckbox';
 
-import styles from './FocusWrapperStyles';
+import styles from './FocusWidgetStyles';
 
 class FocusWrapper extends Component {
   constructor(props) {
@@ -71,9 +71,8 @@ class FocusWrapper extends Component {
     const { focusName, formIsShowing, checked } = this.state;
     const { classes } = this.props;
     const form = (
-      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
+      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }} autoComplete="off">
         <MyTextField
-          id="standard-basic"
           label="What is your focus for today?"
           margin="normal"
           value={focusName}

@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Clock from '../../components/Clock/Clock';
 import Message from '../../components/Message/Message';
-import FocusWrapper from '../../components/FocusWrapper/FocusWrapper';
+import FocusWrapper from '../../components/FocusWidget/FocusWidget';
 import WeatherWidget from '../../components/WeatherWidget/WeatherWidget';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import QuoteWidget from '../../components/QuoteWidget/QuoteWidget';

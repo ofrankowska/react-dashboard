@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import ToDoMenu from './ToDoMenu/ToDoMenu';
 import styles from './ToDoStyles';
@@ -50,11 +49,11 @@ class ToDo extends Component {
   render() {
     const { isEditing, task } = this.state;
     const { checked, listName, listNames, classes } = this.props;
-    const displayMode = <span className={classNames(classes.task)}>{task}</span>;
+    const displayMode = <span className={classes.task}>{task}</span>;
     const editMode = (
       <form onSubmit={this.handleUpdate}>
         <input
-          className={classNames(classes.textInput)}
+          className={classes.textInput}
           type="text"
           name="task"
           value={task}

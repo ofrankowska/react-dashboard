@@ -50,7 +50,7 @@ class Message extends Component {
     const { classes } = this.props;
 
     const formDisplay = (
-      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
+      <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }} autoComplete="off">
         <MyTextField
           id="standard-basic"
           className={classNames(classes.textField)}
