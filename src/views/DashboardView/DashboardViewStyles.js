@@ -47,6 +47,9 @@ export default {
     [sizes.down('xm')]: {
       fontSize: '8rem',
     },
+    [sizes.down('xs')]: {
+      fontSize: '6rem',
+    },
   },
   messageAndFocusWrapper: {
     color: 'white',
@@ -64,6 +67,9 @@ export default {
     marginRight: 'auto',
     maxWidth: '600px',
     padding: '10px 80px',
+    [sizes.down('xm')]: {
+      padding: '10px',
+    },
   },
   toDoWrapper: {
     bottom: '30px',

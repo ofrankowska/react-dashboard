@@ -9,7 +9,7 @@ export default {
       opacity: 0.7,
       transition: 'opacity 0.3s ease-in',
     },
-    [sizes.down('xm')]: {
+    [sizes.down('md')]: {
       fontSize: '38px',
     },
     [sizes.down('xs')]: {
@@ -22,7 +22,7 @@ export default {
     '& svg': {
       fontSize: '38px',
       opacity: 0,
-      [sizes.down('xm')]: {
+      [sizes.down('md')]: {
         fontSize: '28px',
       },
     },

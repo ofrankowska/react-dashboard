@@ -6,28 +6,28 @@ const MyTextField = withStyles({
   root: {
     width: ({ big }) => (big ? 430 : 400),
     bottom: ({ big }) => big && '21px',
-    [sizes.down('xm')]: {
+    [sizes.down('md')]: {
       width: ({ big }) => big && 335,
     },
     [sizes.down('xs')]: {
-      width: 335,
+      width: ({ big }) => !big && 335,
     },
     '& input': {
       fontSize: ({ big }) => (big ? '48px' : '30px'),
       textAlign: ({ big }) => (big ? 'left' : 'center'),
       [sizes.down('xs')]: {
-        fontSize: ({ big }) => big && '25px',
+        fontSize: ({ big }) => (big ? '25px' : '25px'),
       },
-      [sizes.down('xm')]: {
+      [sizes.down('md')]: {
         fontSize: ({ big }) => big && '30px',
       },
     },
     '& label': {
       fontSize: ({ big }) => (big ? '48px' : '30px'),
       [sizes.down('xs')]: {
-        fontSize: ({ big }) => big && '25px',
+        fontSize: ({ big }) => (big ? '25px' : '25px'),
       },
-      [sizes.down('xm')]: {
+      [sizes.down('md')]: {
         fontSize: ({ big }) => big && '38px',
       },
     },
@@ -46,6 +46,9 @@ const MyTextField = withStyles({
     '& label.Mui-focused': {
       color: 'white',
       fontSize: '25px',
+      [sizes.down('xm')]: {
+        display: 'none',
+      },
     },
     '& .MuiInput-underline:before': {
       borderBottom: 'solid 3px white',

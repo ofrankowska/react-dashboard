@@ -74,7 +74,6 @@ class FocusWrapper extends Component {
       <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }} autoComplete="off">
         <MyTextField
           label="What is your focus for today?"
-          margin="normal"
           value={focusName}
           name="focusName"
           onChange={this.handleChange}
