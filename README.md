@@ -1,9 +1,9 @@
 # Personal dashboard
 <h2>Personal dashboard featuring:</h2>
 <ul>
-<li>Changing background based on time of day</li>
 <li>Weather of a chosen location</li>
 <li>Clock</li>
+<li>Changing background based on time of day</li>
 <li>Greeting based on time of day</li>
 <li>Focus of the day</li>
 <li>3 to-do lists (inbox, today and done) with enabled flow of information between them</li>
