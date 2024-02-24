@@ -1,9 +1,9 @@
 {
-  "homepage": "https://github.com/ofrankowska/react-dashboard",
+  "homepage": "https://react-personal-dashboard.netlify.com",
   "name": "react-dashbaord",
   "package-name": "react-dashbaord",
   "description": "Personal dashboard featuring: Weather of a chosen location, Clock, Changing background based on time of day, Greeting based on time of day, Focus of the day, 3 to-do lists (inbox, today and done) with enabled flow of information between them, Inspirational quotes with a like option, Sortable list of favorite inspirational quotes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Ola Frankowska",
   "keywords": ["dashboard", "todo list", "weather"],
   "dependencies": {
