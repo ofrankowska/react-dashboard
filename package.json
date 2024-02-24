@@ -1,5 +1,5 @@
 {
-  "homepage": "http://ofrankowska.github.io/react-dashbaord",
+  "homepage": "https://github.com/ofrankowska/react-dashboard",
   "name": "react-dashbaord",
   "package-name": "react-dashbaord",
   "description": "Personal dashboard featuring: Weather of a chosen location, Clock, Changing background based on time of day, Greeting based on time of day, Focus of the day, 3 to-do lists (inbox, today and done) with enabled flow of information between them, Inspirational quotes with a like option, Sortable list of favorite inspirational quotes",
