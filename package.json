@@ -4,10 +4,10 @@
     "type": "git",
     "url": "https://github.com/ofrankowska/react-dashboard.git"
   },
-  "name": "react-dashbaord",
-  "package-name": "react-dashbaord",
+  "name": "react-personal-dashboard",
+  "package-name": "react-personal-dashboard",
   "description": "Personal dashboard featuring: Weather of a chosen location, Clock, Changing background based on time of day, Greeting based on time of day, Focus of the day, 3 to-do lists (inbox, today and done) with enabled flow of information between them, Inspirational quotes with a like option, Sortable list of favorite inspirational quotes",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Ola Frankowska",
   "keywords": [
     "dashboard",
