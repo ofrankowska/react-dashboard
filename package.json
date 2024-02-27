@@ -7,13 +7,14 @@
   "name": "react-personal-dashboard",
   "package-name": "react-personal-dashboard",
   "description": "Personal dashboard featuring: Weather of a chosen location, Clock, Changing background based on time of day, Greeting based on time of day, Focus of the day, 3 to-do lists (inbox, today and done) with enabled flow of information between them, Inspirational quotes with a like option, Sortable list of favorite inspirational quotes",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Ola Frankowska",
   "keywords": [
     "dashboard",
     "todo list",
     "weather"
   ],
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
